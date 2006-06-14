@@ -1,4 +1,4 @@
 module MuonSeedProducer = MuonSeedGenerator {
  	string DTRecSegmentLabel = 'DTSegment4DProducer'
-	string CSCRecSegmentLabel = 'segmentproducer'
+	string CSCRecSegmentLabel = 'CSCSegmentProducer'
 }  
