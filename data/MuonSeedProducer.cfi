@@ -1,4 +1,12 @@
-module MuonSeedProducer = MuonSeedGenerator {
+include "TrackPropagation/SteppingHelixPropagator/data/OppositeSteppingHelixPropagator.cfi"
+
+es_module = Chi2MeasurementEstimatorESProducer{
+		string ComponentName = "Chi2MeasurementEstimator" 	
+		double MaxChi2 = 25. 
+		double nSigma = 3.
+	}
+
+module MuonSeed = MuonSeedGenerator {
  	string DTRecSegmentLabel = 'DTSegment4DProducer'
 	string CSCRecSegmentLabel = 'CSCSegmentProducer'
 }  
