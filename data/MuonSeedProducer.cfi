@@ -7,6 +7,9 @@ es_module = Chi2MeasurementEstimatorESProducer{
 	}
 
 module MuonSeed = MuonSeedGenerator {
- 	string DTRecSegmentLabel = 'DTSegment4DProducer'
-	string CSCRecSegmentLabel = 'CSCSegmentProducer'
+	untracked bool EnableDTMeasurement = true
+	untracked bool EnableCSCMeasurement = true
+
+ 	untracked string DTRecSegmentLabel = 'DTSegment4DProducer'
+	untracked string CSCRecSegmentLabel = 'CSCSegmentProducer'
 }  
