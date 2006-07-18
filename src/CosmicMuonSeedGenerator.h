@@ -4,8 +4,8 @@
 /** \class CosmicMuonSeedGenerator
  *  SeedGenerator for Cosmic Muon
  *
- *  $Date: 2006/07/14 03:20:08 $
- *  $Revision: 1.2 $
+ *  $Date: 2006/07/07 19:26:12 $
+ *  $Revision: 1.1 $
  *  \author Chang Liu - Purdue University 
  */
 
@@ -42,6 +42,7 @@ class CosmicMuonSeedGenerator: public edm::EDProducer {
 
   /// generate TrajectorySeeds and put them into results
   void createSeeds(TrajectorySeedCollection& results,
+                   int nseeds,
                    const RecHitContainer& hits,
                    const edm::EventSetup& eSetup) const;
 
@@ -60,7 +61,7 @@ class CosmicMuonSeedGenerator: public edm::EDProducer {
   std::string theCSCRecSegmentLabel;
 
   /// the maximum number of Seeds
-  unsigned int theMaxSeeds;
+  int theMaxSeeds;
   
   /// the maximum chi2 required for dt and csc rechits
   double theMaxDTChi2;
