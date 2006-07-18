@@ -1,4 +1,5 @@
-include "TrackPropagation/SteppingHelixPropagator/data/OppositeSteppingHelixPropagator.cfi"
+include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorOpposite.cfi"
+include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorAny.cfi"
 
 es_module = Chi2MeasurementEstimatorESProducer{
 		string ComponentName = "Chi2MeasurementEstimator" 	
