@@ -1,7 +1,7 @@
 module CosmicMuonSeed = CosmicMuonSeedGenerator {
         untracked bool EnableDTMeasurement = true
         untracked bool EnableCSCMeasurement = true
-        string DTRecSegmentLabel = 'dt4DSegments'
-        string CSCRecSegmentLabel = 'cscSegments'
+        string DTRecSegmentLabel = 'DTSegment4DProducer'
+        string CSCRecSegmentLabel = 'CSCSegmentProducer'
 }
 
