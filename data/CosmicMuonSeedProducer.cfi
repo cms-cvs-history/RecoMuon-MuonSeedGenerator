@@ -1,7 +1,18 @@
+include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorAny.cfi"
+
+es_module = Chi2MeasurementEstimatorESProducer{
+		string ComponentName = "Chi2MeasurementEstimator" 	
+		double MaxChi2 = 25. 
+		double nSigma = 3.
+	}
+
 module CosmicMuonSeed = CosmicMuonSeedGenerator {
         untracked bool EnableDTMeasurement = true
         untracked bool EnableCSCMeasurement = true
         string DTRecSegmentLabel = 'dt4DSegments'
         string CSCRecSegmentLabel = 'cscSegments'
+        int32 MaxSeeds = 10
+        double MaxDTChi2 = 100
+        double MaxCSCChi2 = 100
 }
 
