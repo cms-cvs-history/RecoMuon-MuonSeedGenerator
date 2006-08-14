@@ -1,7 +1,10 @@
 include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorOpposite.cfi"
 include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorAny.cfi"
 
-es_module = Chi2MeasurementEstimatorESProducer{
+#FIXME: cf.
+# TrackingTools/KalmanUpdators/data/Chi2MeasurementEstimatorESProducer.cfi
+
+es_module MuonChi2MeasurementEstimator = Chi2MeasurementEstimatorESProducer{
 		string ComponentName = "Chi2MeasurementEstimator" 	
 		double MaxChi2 = 25. 
 		double nSigma = 3.
