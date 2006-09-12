@@ -1,0 +1,3 @@
+# this file is deprecated!Use the one below
+
+include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cff"
