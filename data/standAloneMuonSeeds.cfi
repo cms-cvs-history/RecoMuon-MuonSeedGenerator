@@ -3,11 +3,13 @@ include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorAn
 
 include "TrackingTools/KalmanUpdators/data/Chi2MeasurementEstimatorESProducer.cfi"
 
+# Update this part asap!
 
-module standAloneMuonSeeds = MuonSeedGenerator {
-	bool EnableDTMeasurement = true
-	bool EnableCSCMeasurement = true
-
- 	untracked string DTRecSegmentLabel = 'dt4DSegments'
-	untracked string CSCRecSegmentLabel = 'cscSegments'
+# module standAloneMuonSeeds = MuonSeedGenerator {
+module MuonSeed = MuonSeedGenerator {
+    bool EnableDTMeasurement = true
+    bool EnableCSCMeasurement = true
+    
+    untracked string DTRecSegmentLabel = 'dt4DSegments'
+    untracked string CSCRecSegmentLabel = 'cscSegments'
 }  
