@@ -1,8 +1,3 @@
-include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorOpposite.cfi"
-include "TrackPropagation/SteppingHelixPropagator/data/SteppingHelixPropagatorAny.cfi"
-
-include "TrackingTools/KalmanUpdators/data/Chi2MeasurementEstimatorESProducer.cfi"
-
 # Update this part asap!
 
 # module standAloneMuonSeeds = MuonSeedGenerator {
