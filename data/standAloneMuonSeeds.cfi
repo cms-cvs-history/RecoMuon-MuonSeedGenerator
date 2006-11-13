@@ -5,6 +5,6 @@ module MuonSeed = MuonSeedGenerator {
     bool EnableDTMeasurement = true
     bool EnableCSCMeasurement = true
     
-    untracked string DTRecSegmentLabel = 'dt4DSegments'
-    untracked string CSCRecSegmentLabel = 'cscSegments'
+    InputTag DTRecSegmentLabel = dt4DSegments
+    InputTag CSCRecSegmentLabel = cscSegments
 }  
