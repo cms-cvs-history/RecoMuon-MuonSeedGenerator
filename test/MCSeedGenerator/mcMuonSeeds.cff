@@ -1,0 +1,16 @@
+# Magnetic Field
+include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+
+# Geometries
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
+include "Geometry/CommonDetUnit/data/bareGlobalTrackingGeometry.cfi"
+include "Geometry/DTGeometry/data/dtGeometry.cfi"
+include "Geometry/CSCGeometry/data/cscGeometry.cfi"
+include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
+include "RecoMuon/DetLayers/data/muonDetLayerGeometry.cfi"
+
+# The services
+include "RecoMuon/TrackingTools/data/MuonServiceProxy.cff"
+
+# The seed generator from monte carlo info
+include "RecoMuon/MuonSeedGenerator/test/MCSeedGenerator/mcMuonSeeds.cfi"
