@@ -8,5 +8,5 @@
 <use name=root>
 
 <library file=MCSeedGenerator/MCSeedGenerator.cc name=MCSeedGenerator>
-   <flags SEAL_PLUGIN_NAME="MCSeedGenerator">
+   <flags EDM_PLUGIN=1>
 </library>
