@@ -1,6 +1,6 @@
 # The new seed generator to be used in 2-X-X is MuonSeedProducer
 # to Uncomment for using the new seed generator
-module MuonSeed = MuonSeedProducer {
+module standAloneMuonSeeds = MuonSeedProducer {
 
   # enable the DT chamber
   bool EnableDTMeasurement    = true
@@ -44,6 +44,5 @@ module MuonSeed = MuonSeedProducer {
   double maxPhiResolutionCSC  = 0.03
 
   # Flag for internal debugging
-  bool DebugMuonSeed          = true
-    
+  bool DebugMuonSeed          = false    
 }  
