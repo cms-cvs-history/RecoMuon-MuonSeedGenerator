@@ -9,5 +9,9 @@ include "Geometry/CSCGeometry/data/cscGeometry.cfi"
 include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
 include "RecoMuon/DetLayers/data/muonDetLayerGeometry.cfi"
 
-# Stand alone muon seed producer
+# Old stand alone muon seed producer used priod to 2-X-X
 include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cfi"
+
+# New standalone muon producer to be used in 2-X-X
+# include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeedProducer.cfi"
+
