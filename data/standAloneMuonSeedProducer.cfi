@@ -1,6 +1,6 @@
 # The new seed generator to be used in 2-X-X is MuonSeedProducer
 # to Uncomment for using the new seed generator
-module standAloneMuonSeeds = MuonSeedProducer {
+module MuonSeed = MuonSeedProducer {
 
   # enable the DT chamber
   bool EnableDTMeasurement    = true
