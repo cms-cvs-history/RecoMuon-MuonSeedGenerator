@@ -1,8 +1,8 @@
 module CosmicMuonSeed = CosmicMuonSeedGenerator {
         untracked bool EnableDTMeasurement = true
         untracked bool EnableCSCMeasurement = true
-        untracked string DTRecSegmentLabel = 'dt4DSegments'
-        untracked string CSCRecSegmentLabel = 'cscSegments'
+        untracked InputTag DTRecSegmentLabel = dt4DSegments
+        untracked InputTag CSCRecSegmentLabel = cscSegments
         int32 MaxSeeds = 10
         double MaxDTChi2 = 300
         double MaxCSCChi2 = 300
