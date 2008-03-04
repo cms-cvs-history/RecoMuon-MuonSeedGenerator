@@ -2,6 +2,8 @@
 # to Uncomment for using the new seed generator
 module MuonSeed = MuonSeedProducer {
 
+  using MuonServiceProxy
+
   # enable the DT chamber
   bool EnableDTMeasurement    = true
   InputTag DTSegmentLabel     = dt4DSegments
