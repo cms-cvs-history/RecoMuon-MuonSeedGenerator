@@ -3,10 +3,21 @@
 
 <use name=DataFormats/TrajectorySeed>
 <use name=RecoMuon/TrackingTools>
+<use name=DataFormats/CSCRecHit>
+<use name=DataFormats/DTRecHit>
+
 
 <use name=CLHEP>
 <use name=root>
 
 <library file=MCSeedGenerator/MCSeedGenerator.cc name=MCSeedGenerator>
    <flags EDM_PLUGIN=1>
+</library>
+
+<library name=SeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/SeedParametrization.cc>
+   <Flags EDM_PLUGIN=1>
+</library>
+
+<library name=SeedValidator file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/SeedValidator.cc>
+   <Flags EDM_PLUGIN=1>
 </library>
