@@ -112,6 +112,7 @@ private:
   void RecSeedReader(edm::Handle<TrajectorySeedCollection> rec_seeds );
   void SegOfRecSeed(edm::Handle<TrajectorySeedCollection> rec_seeds, int seed_idx,
                     std::vector<SimSegment> sCSC_v, std::vector<SimSegment> sDT_v);
+  void SegOfRecSeed(edm::Handle<TrajectorySeedCollection> rec_seeds, int seed_idx);
 
   void StaTrackReader(edm::Handle<reco::TrackCollection> sta_trk, int sta_glb);
   void SimInfo(const edm::Handle<edm::SimTrackContainer> simTracks,
@@ -130,11 +131,11 @@ private:
   H2DRecHit1 *h_all;
   H2DRecHit2 *h_NoSeed;
   H2DRecHit3 *h_NoSta;
+  H2DRecHit4 *h_Scope;
   TNtuple1 *tr_muon;
 
   // The file which will store the histos
   TFile *theFile;
-
 
   //cscsegment_stat output
   int cscseg_stat[6];
@@ -208,10 +209,10 @@ private:
   typedef std::vector<double> layer_pt ;
   typedef std::vector<double> layer_pa ;
 
-  std::vector<double> eta_c;
-  std::vector<double> eta_d;
-  std::vector<double> phi_c;
-  std::vector<double> phi_d;
+  std::vector<double> theta_v;
+  std::vector<double> theta_p;
+  std::vector<double> phi_v;
+  std::vector<double> phi_p;
 
   std::vector<double> eta_trk;
   std::vector<double> theta_trk;
