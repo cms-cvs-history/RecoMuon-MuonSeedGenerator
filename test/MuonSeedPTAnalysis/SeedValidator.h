@@ -225,8 +225,6 @@ private:
   std::vector<int> trackID;
 
   // Switch for debug output
-  bool debug;
-
   std::string rootFileName;
   std::string cscSegmentLabel;
   std::string recHitLabel;
@@ -237,7 +235,10 @@ private:
   std::string muonseedLabel;
   edm::InputTag staTrackLabel;
   edm::InputTag glbTrackLabel;
-  double expectedPT;
+
+  bool debug;
+  double dtMax;
+  double dfMax;
 
   bool scope;
   double pTCutMax;

@@ -41,7 +41,6 @@ using namespace reco;
 // constructors
 SeedValidator::SeedValidator(const ParameterSet& pset){ 
 
-  debug             = pset.getUntrackedParameter<bool>("debug");
   rootFileName      = pset.getUntrackedParameter<string>("rootFileName");
   recHitLabel       = pset.getUntrackedParameter<string>("recHitLabel");
   cscSegmentLabel   = pset.getUntrackedParameter<string>("cscSegmentLabel");
@@ -52,7 +51,10 @@ SeedValidator::SeedValidator(const ParameterSet& pset){
   muonseedLabel     = pset.getUntrackedParameter<string>("muonseedLabel");
   staTrackLabel     = pset.getParameter<InputTag>("staTrackLabel");
   glbTrackLabel     = pset.getParameter<InputTag>("glbTrackLabel");
-  expectedPT        = pset.getUntrackedParameter<double>("expectedPT");
+
+  debug             = pset.getUntrackedParameter<bool>("debug");
+  dtMax             = pset.getUntrackedParameter<double>("dtMax");
+  dfMax             = pset.getUntrackedParameter<double>("dfMax");
   scope             = pset.getUntrackedParameter<bool>("scope");
   pTCutMax          = pset.getUntrackedParameter<double>("pTCutMax");
   pTCutMin          = pset.getUntrackedParameter<double>("pTCutMin");
@@ -208,7 +210,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
       double df = fabs(seed_gp[i].phi() - phi_v[j]) ;
       double dR2 = sqrt( dt*dt + df*df ) ;
 
-      if (  dR2 < dR1 && dt < 0.35 && df < 0.5 ) {
+      if (  dR2 < dR1 && dt < dtMax && df < dfMax ) {
          preferTrack = static_cast<int>(j) ;
          dR1 = dR2;
       }
@@ -226,7 +228,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
       double dt   = fabs(sta_theta[i] - theta_v[j]) ; 
       double df   = fabs(sta_phi[i] - phi_v[j]) ;
       double dR2  = sqrt( dt*dt + df*df ) ;
-      if ( dR2 < dR1  && dt < 0.35 && df < 0.5 ) {
+      if ( dR2 < dR1  && dt < dtMax && df < dfMax ) {
          preferTrack = static_cast<int>(j) ;
          dR1 = dR2;
       }
@@ -595,7 +597,7 @@ void SeedValidator::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg, ESHa
         DTChamberId DetId = (*seg_It).chamberId();
         const DTChamber* dtchamber = dtGeom->chamber( DetId );
         GlobalPoint  gp = dtchamber->toGlobal( (*seg_It).localPosition() );
-        if ( ( fabs(gp.theta()- trkTheta) > 0.35  ) || ( fabs(gp.phi()- trkPhi) > 0.5 ) ) continue;
+        if ( ( fabs(gp.theta()- trkTheta) > dtMax  ) || ( fabs(gp.phi()- trkPhi) > dfMax ) ) continue;
 
         dtseg_stat[DetId.station()] += 1;
         int n_phiHits = ((*seg_It).phiSegment())->specificRecHits().size();
@@ -667,7 +669,7 @@ void SeedValidator::CSCRecHit_Stat(Handle<CSCRecHit2DCollection> cscrechit, ESHa
         CSCDetId det_id = (CSCDetId)(*r_it).cscDetId();
 	const CSCChamber* cscchamber = cscGeom->chamber( det_id );
 	GlobalPoint gp = cscchamber->toGlobal((*r_it).localPosition() );
-        if (( fabs(gp.eta()- trkEta) > 0.35  ) || ( fabs(gp.phi()- trkPhi) > 0.5 ) ) continue;
+        if (( fabs(gp.eta()- trkEta) > dtMax  ) || ( fabs(gp.phi()- trkPhi) > dfMax ) ) continue;
 
         cscrh_sum[det_id.station()]++;
      }
@@ -693,7 +695,7 @@ void SeedValidator::DTRecHit_Stat(Handle<DTRecHitCollection> dtrechit, ESHandle<
          const DTChamber* dtchamber = dtGeom->chamber( det_id );
          LocalPoint lrh = (*r_it).localPosition();
          GlobalPoint grh = dtchamber->toGlobal( lrh );
-         if ( ( fabs(grh.eta()- trkEta) > 0.35  ) || ( fabs(grh.phi()- trkPhi) > 0.5 ) ) continue;
+         if ( ( fabs(grh.eta()- trkEta) > dtMax  ) || ( fabs(grh.phi()- trkPhi) > dfMax ) ) continue;
 
          dtrh_sum[det_id.station()]++;
          eta += grh.eta();
