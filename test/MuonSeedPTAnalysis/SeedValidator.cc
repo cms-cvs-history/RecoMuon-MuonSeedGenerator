@@ -181,7 +181,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
   H2DRecHit2 *histo2 = 0;   
   H2DRecHit3 *histo3 = 0;   
   H2DRecHit4 *histo4 = 0;   
-  TNtuple1 *tt = 0;
+  //  TNtuple1 *tt = 0;
  
   // Get sim track information  
   // return  theta_v, theta_p, phi_v, phi_p :  theta and phi of position and momentum 
@@ -497,7 +497,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
  
       // 3. Read out reco segments
       //   return : the ave_phi, ave_eta, phi_resid, eta_resid, dx_error, dy_error, x_error, y_error 
-      int types = RecSegReader(cscSegments,dt4DSegments,cscGeom,dtGeom,theta_p[idx],phi_p[idx]);
+      //      int types = RecSegReader(cscSegments,dt4DSegments,cscGeom,dtGeom,theta_p[idx],phi_p[idx]);
 
       // 4. Check # of segments and rechits in each chambers for this track
       CSCsegment_stat(cscSegments, cscGeom, theta_p[idx], phi_p[idx]);
