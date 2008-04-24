@@ -76,6 +76,8 @@ SeedValidator::SeedValidator(const ParameterSet& pset){
   theFile->cd();
   theFile->mkdir("EventScope");
   theFile->cd();
+  theFile->mkdir("UnRelated");
+  theFile->cd();
   // TTree test
   tr_muon = new TNtuple1();
 
@@ -83,6 +85,7 @@ SeedValidator::SeedValidator(const ParameterSet& pset){
   h_NoSeed  = new H2DRecHit2("NoSeed");
   h_NoSta   = new H2DRecHit3("NoSta");
   h_Scope   = new H2DRecHit4();
+  h_UnRel   = new H2DRecHit5();
 }
 
 // destructor
@@ -108,6 +111,9 @@ SeedValidator::~SeedValidator(){
   theFile->cd("EventScope");
   h_Scope->Write();
 
+  theFile->cd();
+  theFile->cd("UnRelated");
+  h_UnRel->Write();
   // for tree
   theFile->cd();
   tr_muon->Write();
@@ -117,6 +123,7 @@ SeedValidator::~SeedValidator(){
   delete h_NoSeed;
   delete h_NoSta;
   delete h_Scope;
+  delete h_UnRel;
   delete tr_muon;
 
   theFile->Close();
@@ -183,7 +190,8 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
   H2DRecHit2 *histo2 = 0;   
   H2DRecHit3 *histo3 = 0;   
   H2DRecHit4 *histo4 = 0;   
-  //  TNtuple1 *tt = 0;
+  H2DRecHit5 *histo5 = 0;   
+  TNtuple1 *tt = 0;
  
   // Get sim track information  
   // return  theta_v, theta_p, phi_v, phi_p :  theta and phi of position and momentum 
@@ -206,8 +214,9 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
     double dR1= 99.0 ;
     int preferTrack = -1;
     for (unsigned int j=0; j < theta_p.size(); j++) {
-      double dt = fabs(seed_gp[i].theta() - theta_v[j]) ; 
-      double df = fabs(seed_gp[i].phi() - phi_v[j]) ;
+      double dt = fabs(seed_gp[i].theta() - theta_p[j]) ; 
+      double df = fabs(seed_gp[i].phi() - phi_p[j]) ;
+      if (df > (6.283 - dfMax) ) df = 6.283 - df ;
       double dR2 = sqrt( dt*dt + df*df ) ;
 
       if (  dR2 < dR1 && dt < dtMax && df < dfMax ) {
@@ -220,13 +229,14 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
 
   //// associate sta with sim tracks  
   //// sta_simtrk => the simtrack number j associate with sta  i 
-  std::vector<int> sta_simtrk(sta_theta.size(), -1);
-  for (unsigned int i=0; i < sta_theta.size(); i++) {
+  std::vector<int> sta_simtrk(sta_thetaV.size(), -1);
+  for (unsigned int i=0; i < sta_thetaV.size(); i++) {
     double dR1 = 99.0 ;
     int preferTrack = -1;
     for (unsigned int j=0; j < theta_p.size(); j++) {
-      double dt   = fabs(sta_theta[i] - theta_v[j]) ; 
-      double df   = fabs(sta_phi[i] - phi_v[j]) ;
+      double dt   = fabs(sta_thetaP[i] - theta_p[j]) ; 
+      double df   = fabs(sta_phiP[i] - phi_p[j]) ;
+      if (df > (6.283 - dfMax) ) df = 6.283 - df ;
       double dR2  = sqrt( dt*dt + df*df ) ;
       if ( dR2 < dR1  && dt < dtMax && df < dfMax ) {
          preferTrack = static_cast<int>(j) ;
@@ -264,20 +274,28 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
   histo1->Fill1o( sta_mT.size(), seed_mT.size() );
 
   // look at those un-associated seeds and sta
+  histo5 = h_UnRel;
   for (size_t i=0; i < seeds_simtrk.size(); i++ ) {
-      if ( seeds_simtrk[i]== -1 )   histo1->Fill1d1( seed_gp[i].eta() );
+      // un-related !
+      if ( seeds_simtrk[i]== -1 && seed_Evt != 0) { 
+           histo5->Fill5a( seed_gp[i].eta(), seed_mT[i] );
+      }
+      // Orphan
       if ( seeds_simtrk[i]== -1 && seed_Evt == 0 ) {
          for (size_t j=0; j < theta_p.size(); j++ ) { 
-             histo1->Fill1d3( seed_gp[i].eta(), getEta(theta_p[j]) );
+             histo5->Fill5b( seed_gp[i].eta(), getEta(theta_p[j]), seed_mT[i] );
          }
       }
   }
-
   for (size_t i=0; i < sta_simtrk.size(); i++ ) {
-      if ( sta_simtrk[i]== -1 )  histo1->Fill1d2( getEta(sta_theta[i]) );
+      // un-related !
+      if ( sta_simtrk[i]== -1 && sta_Evt != 0 ) {
+           histo5->Fill5c( getEta(sta_thetaV[i]), sta_mT[i] );
+      }
+      // Orphan
       if ( sta_simtrk[i]== -1 && sta_Evt == 0 ) {
          for (unsigned int j=0; j < theta_p.size(); j++ ) { 
-             histo1->Fill1d4( getEta(sta_theta[i]), getEta(theta_p[j]) );
+             histo5->Fill5d( getEta(sta_thetaV[i]), getEta(theta_p[j]), sta_mT[i], sta_phiV[i], phi_v[j]  );
          }
       }
   }
@@ -287,12 +305,11 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
     int bestSeed = -1;
     double dSeedPT = 99999.9 ;
     // look the seed for every sta tracks
-    int trkId = 0;
     for (unsigned int i=0; i < eta_trk.size(); i++) {
 
         // find the best seed whose pt is closest to a simTrack which associate with 
         for(unsigned int j=0; j < seeds_simtrk.size(); j++){
-           if ( ( seeds_simtrk[j] == trkId ) && ( fabs(seed_mT[j] - pt_trk[trkId]) < dSeedPT ) ){
+           if ( ( seeds_simtrk[j] == static_cast<int>(i) ) && ( fabs(seed_mT[j] - pt_trk[i]) < dSeedPT ) ){
               dSeedPT = fabs( seed_mT[j] - pt_trk[i] );
               bestSeed = static_cast<int>(j);
            }
@@ -300,7 +317,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
 
         for(unsigned int j=0; j < seeds_simtrk.size(); j++){
 
-           if (  seeds_simtrk[j]!= trkId ) continue;
+           if (  seeds_simtrk[j]!= static_cast<int>(i) ) continue;
 
            // put the rest seeds in the minus side 
            double bestSeedPt = 99999.9;
@@ -312,14 +329,16 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
 
            std::vector<double> pa1 = palayer[i];
            std::vector<double> pt1 = ptlayer[i];
-	   double pull_qbp  = ( qbp[j]  - (theQ[j]/pa1[ seed_layer[j] ]) ) / err_qbp[j] ;
-	   double pull_qbpt = ( qbpt[j] - (theQ[j]/pt1[ seed_layer[j] ]) ) / err_qbpt[j] ;
-	   histo1->Fill1g( seed_mT[j], seed_mA[j], bestSeedPt, seed_gp[j].eta() ) ;
-	   histo1->Fill1i( pull_qbp, seed_gp[j].eta(), qbpt[j], pull_qbpt, err_qbp[j], err_qbpt[j] );
+	   double pull_qbp   = ( qbp[j]  - (theQ[j]/pa1[ seed_layer[j] ]) ) / err_qbp[j] ;
+	   double pull_qbpt  = ( qbpt[j] - (theQ[j]/pt1[ seed_layer[j] ]) ) / err_qbpt[j] ;
+           //double resol_qbpt = ( qbpt[j] - (theQ[j]/pt_trk[j]) ) / (theQ[j]/pt_trk[j]) ;
+           double resol_qbpt = ( qbpt[j] - (theQ[j]/pt1[ seed_layer[j] ]) ) / (theQ[j]/pt1[ seed_layer[j] ]) ;
+           double ptLoss =  pt1[ seed_layer[j] ] / pt1[0] ;
+	   histo1->Fill1g( seed_mT[j], seed_mA[j], bestSeedPt, seed_gp[j].eta(), ptLoss , pt1[0]) ;
+	   histo1->Fill1i( pull_qbp, seed_gp[j].eta(), qbpt[j], pull_qbpt, err_qbp[j], err_qbpt[j], resol_qbpt);
 	   histo1->Fill1f( seed_gp[j].eta(), err_dx[j], err_dy[j], err_x[j], err_y[j]);
 
         }
-        trkId++;
     }
 
   }
@@ -328,16 +347,30 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
   if (nu_sta > 0 ) {
     double dPT = 9999999.9 ;
     int best = 0;
+    double expectPT = -1.0;
     for (unsigned int i=0; i < eta_trk.size(); i++) {
         // find the best sta whose pt is closest to a simTrack which associate with 
         for(unsigned int j=0; j < sta_simtrk.size(); j++){
            if ( ( sta_simtrk[j]==static_cast<int>(i) ) && ( fabs(sta_mT[j] - pt_trk[i]) < dPT ) ){
               dPT = fabs( seed_mT[j] - pt_trk[i] );
               best = j;
+              std::vector<double> pt1 = ptlayer[i];
+              //expectPT = pt1[1];
+              expectPT = pt_trk[i];
            }
         }
        // looking for the sta muon which is closest to simTrack pt 
-       histo1->Fill1j(getEta(theta_p[i]), sta_qbp[best], sta_qbpt[best], sta_mT[best], sta_mA[best], pt_trk[i]);
+       if (expectPT > 0) {
+          double sim_qbpt = theQ[best]/expectPT;
+          double resol_qbpt = (sta_qbpt[best] - sim_qbpt ) / sim_qbpt ;
+          /*
+          double sta_q = 1.0;
+          if ( sta_qbpt[best] < 0 ) sta_q = -1.0;
+          double sta_qbmt = sta_q / sta_mT[best];
+          double resol_qbpt = (sta_qbmt - sim_qbpt ) / sim_qbpt ;
+          */
+          histo1->Fill1j(getEta(theta_p[i]), sta_qbp[best], sta_qbpt[best], sta_mT[best], sta_mA[best], pt_trk[i], resol_qbpt );
+       }
     }
 
 
@@ -419,7 +452,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
             if ( sta_simtrk[j] != static_cast<int>(i) ) continue;
             if ( sta_mT[j] < pTCutMin || sta_mT[j] > pTCutMax   ) continue;
 
-            histo4->Fill4a( sta_phi[j], getEta(sta_theta[j]), getEta(theta_p[i])  );
+            histo4->Fill4a( sta_phiV[j], getEta(sta_thetaV[j]), getEta(theta_p[i])  );
 
             // look at the sta pt vs. #_of_hits and chi2
             double ndf = static_cast<double>(2*sta_nHits[j]-4);
@@ -499,7 +532,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
  
       // 3. Read out reco segments
       //   return : the ave_phi, ave_eta, phi_resid, eta_resid, dx_error, dy_error, x_error, y_error 
-      //      int types = RecSegReader(cscSegments,dt4DSegments,cscGeom,dtGeom,theta_p[idx],phi_p[idx]);
+      int types = RecSegReader(cscSegments,dt4DSegments,cscGeom,dtGeom,theta_p[idx],phi_p[idx]);
 
       // 4. Check # of segments and rechits in each chambers for this track
       CSCsegment_stat(cscSegments, cscGeom, theta_p[idx], phi_p[idx]);
@@ -568,8 +601,9 @@ void SeedValidator::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg , ESHan
      { 
         CSCDetId DetId = (CSCDetId)(*seg_It).cscDetId();
 	const CSCChamber* cscchamber = cscGeom->chamber( DetId );
-	GlobalPoint gp = cscchamber->toGlobal((*seg_It).localPosition() );
-        if (( fabs(gp.theta()- trkTheta) > 0.5  ) || ( fabs(gp.phi()- trkPhi) > 0.5 ) ) continue;
+	GlobalPoint  gp = cscchamber->toGlobal((*seg_It).localPosition() );
+	GlobalVector gv = cscchamber->toGlobal((*seg_It).localDirection() );
+        if (( fabs(gp.theta()- trkTheta) > dtMax  ) || ( fabs(gv.phi()- trkPhi) > dfMax ) ) continue;
 
         cscseg_stat[DetId.station()] += 1;
         if ((*seg_It).nRecHits() > 3 ) {
@@ -597,7 +631,8 @@ void SeedValidator::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg, ESHa
         DTChamberId DetId = (*seg_It).chamberId();
         const DTChamber* dtchamber = dtGeom->chamber( DetId );
         GlobalPoint  gp = dtchamber->toGlobal( (*seg_It).localPosition() );
-        if ( ( fabs(gp.theta()- trkTheta) > dtMax  ) || ( fabs(gp.phi()- trkPhi) > dfMax ) ) continue;
+        GlobalVector gv = dtchamber->toGlobal( (*seg_It).localDirection() );
+        if ( ( fabs(gp.theta()- trkTheta) > dtMax  ) || ( fabs(gv.phi()- trkPhi) > dfMax ) ) continue;
 
         dtseg_stat[DetId.station()] += 1;
         int n_phiHits = ((*seg_It).phiSegment())->specificRecHits().size();
@@ -974,10 +1009,14 @@ void SeedValidator::StaTrackReader( Handle<reco::TrackCollection> sta_trk, int s
 
      // look at the inner most momentum and position
      nu_sta=0;
+
+     sta_phiP.clear();
+     sta_thetaP.clear();
+
      sta_mT.clear();
      sta_mA.clear();
-     sta_theta.clear();
-     sta_phi.clear();
+     sta_thetaV.clear();
+     sta_phiV.clear();
      sta_qbp.clear();
      sta_qbpt.clear();
      sta_chi2.clear();
@@ -986,11 +1025,24 @@ void SeedValidator::StaTrackReader( Handle<reco::TrackCollection> sta_trk, int s
      TrackCollection::const_iterator iTrk;
      for ( iTrk = sta_trk->begin(); iTrk !=  sta_trk->end(); iTrk++) {
          nu_sta++;
+ 
+         // get the inner poistion( eta & phi )
+         math::XYZPoint staPos = (*iTrk).innerPosition();
+         double posMag = sqrt( staPos.x()*staPos.x() + staPos.y()*staPos.y() + staPos.z()*staPos.z() );
+         math::XYZVector staMom = (*iTrk).innerMomentum();
+         double innerMt = sqrt( (staMom.x()*staMom.x()) + (staMom.y()*staMom.y()) );
+
+         sta_phiP.push_back( atan2( staPos.y(), staPos.x() ) );
+         sta_thetaP.push_back( acos( staPos.z()/posMag ) );
+
+         cout<<" momentum= "<<(*iTrk).momentum()<<"  pt= "<<(*iTrk).pt()<<endl;
+         cout<<" innerMom= "<<(*iTrk).innerMomentum()<<" iMt= "<<innerMt<<endl;
 
          sta_mA.push_back( (*iTrk).p() );
-         sta_mT.push_back( (*iTrk).pt() );
-         sta_theta.push_back( (*iTrk).theta() );
-         sta_phi.push_back( (*iTrk).phi() );
+         //sta_mT.push_back( (*iTrk).pt() );
+         sta_mT.push_back( innerMt );
+         sta_thetaV.push_back( (*iTrk).theta() );
+         sta_phiV.push_back( (*iTrk).phi() );
          sta_qbp.push_back( (*iTrk).qoverp() );
          sta_qbpt.push_back( ( (*iTrk).qoverp()/(*iTrk).pt() )*(*iTrk).p() );
          sta_chi2.push_back( (*iTrk).chi2() );
@@ -1010,11 +1062,12 @@ void SeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
                             Handle<edm::PSimHitContainer> dsimHits, Handle<edm::PSimHitContainer> csimHits,
                             ESHandle<DTGeometry> dtGeom, ESHandle<CSCGeometry> cscGeom){
 
+  // theta and phi at inner-most layer of Muon System
   theta_p.clear();
   theta_v.clear();
   phi_p.clear();
   phi_v.clear();
-
+  // basic sim track infomation 
   eta_trk.clear();
   theta_trk.clear();
   phi_trk.clear();
@@ -1066,7 +1119,7 @@ void SeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
  
              pt1[ D_Id.station() ] = sqrt( (m2.x()*m2.x()) + (m2.y()*m2.y()) );
              pa1[ D_Id.station() ] = sqrt( (m2.x()*m2.x()) + (m2.y()*m2.y()) + (m2.z()*m2.z()) );
-             
+                       
              if ( enu2 == 0 ) { 
                 theta_p.push_back( gp.theta() );
                 theta_v.push_back( m2.theta() );
@@ -1105,8 +1158,9 @@ void SeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
 
       ptlayer.push_back(pt1);
       palayer.push_back(pa1);
+      cout<<" simTrk momentum= "<<(*simTk_It).momentum()<<" pa= "<<pa1[0]<<" pt= "<<pt1[0]<<endl;
+      cout<<" simhit momentum= "<< pa1[1] <<" pt= "<<pt1[1]<<endl;
   }
-
 }
 
 // Look up what segments we have in a event

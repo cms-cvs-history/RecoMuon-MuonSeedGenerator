@@ -1,6 +1,6 @@
 // Class Header
 #include "SeedParametrization.h"
-#include "RecoMuon/MuonSeedGenerator/test/MuonSeedPTAnalysis/SegSelector.h"
+#include "SegSelector.h"
 
 // for MuonSeedBuilder
 /*
@@ -46,9 +46,9 @@ SeedParametrization::SeedParametrization(const ParameterSet& pset){
   cscSegmentLabel   = pset.getUntrackedParameter<string>("cscSegmentLabel");
   dtrecHitLabel     = pset.getUntrackedParameter<string>("dtrecHitLabel");
   dtSegmentLabel    = pset.getUntrackedParameter<string>("dtSegmentLabel");
+  //dt2DSegmentLabel  = pset.getUntrackedParameter<string>("dt2DSegmentLabel");
   simHitLabel       = pset.getUntrackedParameter<string>("simHitLabel");
   simTrackLabel     = pset.getUntrackedParameter<string>("simTrackLabel");
-  muonseedLabel     = pset.getUntrackedParameter<string>("muonseedLabel");
 
   recsegSelector    = new SegSelector(pset); 
   //muonSeedBuilder_  = new MuonSeedBuilder( pset );
@@ -228,6 +228,10 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
   Handle<DTRecSegment4DCollection> dt4DSegments;
   event.getByLabel(dtSegmentLabel, dt4DSegments);
 
+  // Get the DT Segments collection :
+  //Handle<DTRecSegment2DCollection> dt2DSegments;
+  //event.getByLabel(dtSegmentLabel, dt2DSegments);
+
   // Get the SimHit collection :
   Handle<PSimHitContainer> csimHits;
   event.getByLabel(simHitLabel,"MuonCSCHits", csimHits);  
@@ -285,6 +289,7 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
   }
   histo1 = h_all;
   histo1->Fill1(cscseg_stat[5],dtseg_stat[5],allmu_stat,eta_c,eta_d,allmu_eta,eta_trk);
+  // check the energy/pt loss in each layer
 
   // look up the # of segments in each station
   if (cscseg_stat[0] != 0){
@@ -293,6 +298,12 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
      for (int k=1; k<5; k++) {
          histo2->Fill4(k,cscseg_stat[k],cscseg_stat1[k]);
      }
+     //if (pt1[0] < 50) {
+        if (etaLc[1] !=  0.0) {   histo1->Fill1c1(etaLc[1],ptLossC[1]) ; }
+        if (etaLc[2] !=  0.0) {   histo1->Fill1c2(etaLc[2],ptLossC[2], pt1[0]) ; }
+        if (etaLc[3] !=  0.0) {   histo1->Fill1c3(etaLc[3],ptLossC[3]) ; }
+        if (etaLc[4] !=  0.0) {   histo1->Fill1c4(etaLc[4],ptLossC[4]) ; }
+     //}
   }
   if (dtseg_stat[0] != 0) {
      histo3 = h_dt;
@@ -300,6 +311,12 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
      for (int k=1; k<5; k++) {
          histo3->Fill4a(k,dtseg_stat[k],dtseg_stat1[k]);
      }
+     //if (pt1[0] < 50) {
+        if (etaLd[1] !=  0.0) {   histo1->Fill1d1(etaLd[1],ptLossD[1], pt1[0]) ; }
+        if (etaLd[2] !=  0.0) {   histo1->Fill1d2(etaLd[2],ptLossD[2]) ; }
+	if (etaLd[3] !=  0.0) {   histo1->Fill1d3(etaLd[3],ptLossD[3]) ; }
+	if (etaLd[4] !=  0.0) {   histo1->Fill1d4(etaLd[4],ptLossD[4]) ; }
+     //}
   }
 
   // flag the overlap case
@@ -371,87 +388,75 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
   }
 
 
-  if (dPhiV1[1][0][1]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[1] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_0( dPhiV1[0][0][1],dPhiV1[1][0][1],pt1[1]*dPhiV1[0][0][1],pt1[1]*dPhiV1[1][0][1],
+  // fill the information for CSC pT parameterization from segment pair
+  histo2 = h_csc;
+  if (dPhiP1[1][0][1]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[1] < 2000.0){
+     histo2->Fill5_0( dPhiP1[0][0][1],dPhiP1[1][0][1],pt1[1]*dPhiP1[0][0][1],pt1[1]*dPhiP1[1][0][1],
+		     fabs(EtaP1[0][0]),fabs(EtaP1[1][0]) );
+  }
+  if (dPhiP1[1][0][2]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[2] < 2000.0){
+     histo2->Fill5_1( dPhiP1[0][0][2],dPhiP1[1][0][2],pt1[1]*dPhiP1[0][0][2],pt1[1]*dPhiP1[1][0][2],
+		     fabs(EtaP1[0][0]),fabs(EtaP1[1][0]) );
+  }
+  if (dPhiP1[1][0][3]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[3] < 2000.0){
+     histo2->Fill5_2( dPhiP1[0][0][3],dPhiP1[1][0][3],pt1[1]*dPhiP1[0][0][3],pt1[1]*dPhiP1[1][0][3],
+		     fabs(EtaP1[0][0]),fabs(EtaP1[1][0]) );
+  }
+  if (dPhiP1[1][0][4]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[4] < 2000.0){
+     histo2->Fill5_3( dPhiP1[0][0][4],dPhiP1[1][0][4],pt1[1]*dPhiP1[0][0][4],pt1[1]*dPhiP1[1][0][4],
+		     fabs(EtaP1[0][0]),fabs(EtaP1[1][0]) );
+  }
+  if (dPhiP1[1][1][2]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[2] < 2000.0){
+     histo2->Fill5_1( dPhiP1[0][1][2],dPhiP1[1][1][2],pt1[1]*dPhiP1[0][1][2],pt1[1]*dPhiP1[1][1][2],
 		     fabs(EtaP1[0][1]),fabs(EtaP1[1][1]) );
   }
-  if (dPhiV1[1][0][2]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[2] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_1( dPhiV1[0][0][2],dPhiV1[1][0][2],pt1[1]*dPhiV1[0][0][2],pt1[1]*dPhiV1[1][0][2],
+  if (dPhiP1[1][1][3]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[3] < 2000.0){
+     histo2->Fill5_2( dPhiP1[0][1][3],dPhiP1[1][1][3],pt1[1]*dPhiP1[0][1][3],pt1[1]*dPhiP1[1][1][3],
+		     fabs(EtaP1[0][1]),fabs(EtaP1[1][1]) );
+  }
+  if (dPhiP1[1][1][4]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[4] < 2000.0){
+     histo2->Fill5_3( dPhiP1[0][1][4],dPhiP1[1][1][4],pt1[1]*dPhiP1[0][1][4],pt1[1]*dPhiP1[1][1][4],
+		     fabs(EtaP1[0][1]),fabs(EtaP1[1][1]) );
+  }
+  if (dPhiP1[1][2][3]!=99.0 && chi2_dof1[2] < 2000.0 && chi2_dof1[3] < 2000.0){
+     histo2->Fill5_4( dPhiP1[0][2][3],dPhiP1[1][2][3],pt1[2]*dPhiP1[0][2][3],pt1[2]*dPhiP1[1][2][3],
 		     fabs(EtaP1[0][2]),fabs(EtaP1[1][2]) );
   }
-  if (dPhiV1[1][0][3]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[3] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_2( dPhiV1[0][0][3],dPhiV1[1][0][3],pt1[1]*dPhiV1[0][0][3],pt1[1]*dPhiV1[1][0][3],
-		     fabs(EtaP1[0][3]),fabs(EtaP1[1][3]) );
-  }
-  if (dPhiV1[1][0][4]!=99.0 && chi2_dof1[0] < 2000.0 && chi2_dof1[4] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_3( dPhiV1[0][0][4],dPhiV1[1][0][4],pt1[1]*dPhiV1[0][0][4],pt1[1]*dPhiV1[1][0][4],
-		     fabs(EtaP1[0][4]),fabs(EtaP1[1][4]) );
-  }
-  if (dPhiV1[1][1][2]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[2] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_1( dPhiV1[0][1][2],dPhiV1[1][1][2],pt1[1]*dPhiV1[0][1][2],pt1[1]*dPhiV1[1][1][2],
+  if (dPhiP1[1][2][4]!=99.0 && chi2_dof1[2] < 2000.0 && chi2_dof1[4] < 2000.0){
+     histo2->Fill5_5( dPhiP1[0][2][4],dPhiP1[1][2][4],pt1[2]*dPhiP1[0][2][4],pt1[2]*dPhiP1[1][2][4],
 		     fabs(EtaP1[0][2]),fabs(EtaP1[1][2]) );
   }
-  if (dPhiV1[1][1][3]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[3] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_2( dPhiV1[0][1][3],dPhiV1[1][1][3],pt1[1]*dPhiV1[0][1][3],pt1[1]*dPhiV1[1][1][3],
+  if (dPhiP1[1][3][4]!=99.0 && chi2_dof1[3] < 2000.0 && chi2_dof1[4] < 2000.0){
+     histo2->Fill5_6( dPhiP1[0][3][4],dPhiP1[1][3][4],pt1[3]*dPhiP1[0][3][4],pt1[3]*dPhiP1[1][3][4],
 		     fabs(EtaP1[0][3]),fabs(EtaP1[1][3]) );
-  }
-  if (dPhiV1[1][1][4]!=99.0 && chi2_dof1[1] < 2000.0 && chi2_dof1[4] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_3( dPhiV1[0][1][4],dPhiV1[1][1][4],pt1[1]*dPhiV1[0][1][4],pt1[1]*dPhiV1[1][1][4],
-		     fabs(EtaP1[0][4]),fabs(EtaP1[1][4]) );
-  }
-  if (dPhiV1[1][2][3]!=99.0 && chi2_dof1[2] < 2000.0 && chi2_dof1[3] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_4( dPhiV1[0][2][3],dPhiV1[1][2][3],pt1[2]*dPhiV1[0][2][3],pt1[2]*dPhiV1[1][2][3],
-		     fabs(EtaP1[0][3]),fabs(EtaP1[1][3]) );
-  }
-  if (dPhiV1[1][2][4]!=99.0 && chi2_dof1[2] < 2000.0 && chi2_dof1[4] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_5( dPhiV1[0][2][4],dPhiV1[1][2][4],pt1[2]*dPhiV1[0][2][4],pt1[2]*dPhiV1[1][2][4],
-		     fabs(EtaP1[0][4]),fabs(EtaP1[1][4]) );
-  }
-  if (dPhiV1[1][3][4]!=99.0 && chi2_dof1[3] < 2000.0 && chi2_dof1[4] < 2000.0){
-     histo2 = h_csc;
-     histo2->Fill5_6( dPhiV1[0][3][4],dPhiV1[1][3][4],pt1[3]*dPhiV1[0][3][4],pt1[3]*dPhiV1[1][3][4],
-		     fabs(EtaP1[0][4]),fabs(EtaP1[1][4]) );
   }
 
 
   /// For DT
-  if (dPhiV3[1][1][2]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[2] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_1( dPhiV3[0][1][2],dPhiV3[1][1][2],pt1[1]*dPhiV3[0][1][2],pt1[1]*dPhiV3[1][1][2],
-		     fabs(EtaP3[0][2]),fabs(EtaP3[1][2]) );
-  }
-  if (dPhiV3[1][1][3]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[3] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_2( dPhiV3[0][1][3],dPhiV3[1][1][3],pt1[1]*dPhiV3[0][1][3],pt1[1]*dPhiV3[1][1][3],
-		     fabs(EtaP3[0][3]),fabs(EtaP3[1][3]) );
-  }
-  if (dPhiV3[1][1][4]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[4] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_3( dPhiV3[0][1][4],dPhiV3[1][1][4],pt1[1]*dPhiV3[0][1][4],pt1[1]*dPhiV3[1][1][4],
+  //  fill the information for DT pT parameterization from segment pair
+  histo3 = h_dt;
+  if (dPhiP3[1][1][2]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[2] < 2000.0){
+     histo3->Fill6_1( dPhiP3[0][1][2],dPhiP3[1][1][2],pt1[1]*dPhiP3[0][1][2],pt1[1]*dPhiP3[1][1][2],
 		     fabs(EtaP3[0][1]),fabs(EtaP3[1][1]) );
   }
-  if (dPhiV3[1][2][3]!=99.0 && chi2_dof3[2] < 2000.0 && chi2_dof3[3] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_4( dPhiV3[0][2][3],dPhiV3[1][2][3],pt1[2]*dPhiV3[0][2][3],pt1[2]*dPhiV3[1][2][3],
-		     fabs(EtaP3[0][3]),fabs(EtaP3[1][3]) );
+  if (dPhiP3[1][1][3]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[3] < 2000.0){
+     histo3->Fill6_2( dPhiP3[0][1][3],dPhiP3[1][1][3],pt1[1]*dPhiP3[0][1][3],pt1[1]*dPhiP3[1][1][3],
+		     fabs(EtaP3[0][1]),fabs(EtaP3[1][1]) );
   }
-  if (dPhiV3[1][2][4]!=99.0 && chi2_dof3[2] < 2000.0 && chi2_dof3[4] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_5( dPhiV3[0][2][4],dPhiV3[1][2][4],pt1[2]*dPhiV3[0][2][4],pt1[2]*dPhiV3[1][2][4],
+  if (dPhiP3[1][1][4]!=99.0 && chi2_dof3[1] < 2000.0 && chi2_dof3[4] < 2000.0){
+     histo3->Fill6_3( dPhiP3[0][1][4],dPhiP3[1][1][4],pt1[1]*dPhiP3[0][1][4],pt1[1]*dPhiP3[1][1][4],
+		     fabs(EtaP3[0][1]),fabs(EtaP3[1][1]) );
+  }
+  if (dPhiP3[1][2][3]!=99.0 && chi2_dof3[2] < 2000.0 && chi2_dof3[3] < 2000.0){
+     histo3->Fill6_4( dPhiP3[0][2][3],dPhiP3[1][2][3],pt1[2]*dPhiP3[0][2][3],pt1[2]*dPhiP3[1][2][3],
 		     fabs(EtaP3[0][2]),fabs(EtaP3[1][2]) );
   }
-  if (dPhiV3[1][3][4]!=99.0 && chi2_dof3[3] < 2000.0 && chi2_dof3[4] < 2000.0){
-     histo3 = h_dt;
-     histo3->Fill6_6( dPhiV3[0][3][4],dPhiV3[1][3][4],pt1[3]*dPhiV3[0][3][4],pt1[3]*dPhiV3[1][3][4],
+  if (dPhiP3[1][2][4]!=99.0 && chi2_dof3[2] < 2000.0 && chi2_dof3[4] < 2000.0){
+     histo3->Fill6_5( dPhiP3[0][2][4],dPhiP3[1][2][4],pt1[2]*dPhiP3[0][2][4],pt1[2]*dPhiP3[1][2][4],
+		     fabs(EtaP3[0][2]),fabs(EtaP3[1][2]) );
+  }
+  if (dPhiP3[1][3][4]!=99.0 && chi2_dof3[3] < 2000.0 && chi2_dof3[4] < 2000.0){
+     histo3->Fill6_6( dPhiP3[0][3][4],dPhiP3[1][3][4],pt1[3]*dPhiP3[0][3][4],pt1[3]*dPhiP3[1][3][4],
 		     fabs(EtaP3[0][3]),fabs(EtaP3[1][3]) );
   }
 
@@ -607,6 +612,7 @@ void SeedParametrization::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg
      }
      for(DTRecSegment4DCollection::const_iterator seg_It = dtSeg->begin(); seg_It != dtSeg->end(); seg_It++)
      { 
+        if ( !(*seg_It).hasPhi() || !(*seg_It).hasZed()  ) continue;
         DTChamberId DetId = (*seg_It).chamberId();
         dtseg_stat[DetId.station()] += 1;
         int n_phiHits = ((*seg_It).phiSegment())->specificRecHits().size();
@@ -698,9 +704,11 @@ void SeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
   // pt1 -> pt in different station pt1[0] is the track pt
   for (int i=0; i<5; i++) {
       pt1[i] = 0.0;
-  }
-  for (int i=0; i<5; i++) {
       pa[i] = 0.0;
+      etaLc[i]= 0.0;
+      etaLd[i]= 0.0;
+      ptLossC[i]=0.0;
+      ptLossD[i]=0.0;
   }
 
   // eta_c -> ave.eta from all csc stations ; cta_d -> ave.eta from dt stations
@@ -738,6 +746,8 @@ void SeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
           if ( ( abs((*cs_It).particleType())==13 ) && ( (*cs_It).trackId()==1 )) {
              pt1[C_Id.station()] = sqrt( (m1.x()*m1.x()) + (m1.y()*m1.y()) );
              pa[C_Id.station()] = sqrt( (m1.x()*m1.x()) + (m1.y()*m1.y()) + (m1.z()*m1.z()));
+             etaLc[C_Id.station()] = fabs( gp.eta() );
+             ptLossC[C_Id.station()] = pt1[C_Id.station()] / pt1[0] ;
              eta_c1 += fabs(gp.eta());
              enu1   += 1.0;
           }
@@ -762,6 +772,8 @@ void SeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
           if ( ( abs((*ds_It).particleType())==13 ) && ( (*ds_It).trackId()==1 )) {
              pt1[D_Id.station()] = sqrt( (m2.x()*m2.x()) + (m2.y()*m2.y()) );
              pa[D_Id.station()] = sqrt( (m2.x()*m2.x()) + (m2.y()*m2.y()) + (m2.z()*m2.z()));
+             etaLd[D_Id.station()] = fabs( gp.eta() );
+             ptLossD[D_Id.station()] = pt1[D_Id.station()] / pt1[0] ;
              eta_d1 += fabs(gp.eta());
              enu2  += 1.0;
           }

@@ -37,6 +37,19 @@ public:
     heta_trk = new TH1F(N1+"_heta_trk"," eta from track",300, 0.0, 3.0);
 
     heta_nSeg_seed = new TH2F(N1+"_heta_nSeg_seed",  " eta vs nSeg from rec seed", 300, 0.0, 3., 20, -0.25, 9.75);
+
+    heta_ptLossC1 = new TH2F(N1+"_heta_ptLossC1","CSC eta vs ptLoss at layer1", 18, 0.7, 2.5, 60, 0.5, 1.1);
+    heta_ptLossC2 = new TH2F(N1+"_heta_ptLossC2","CSC eta vs ptLoss at layer2", 18, 0.7, 2.5, 60, 0.5, 1.1);
+    heta_ptLossC3 = new TH2F(N1+"_heta_ptLossC3","CSC eta vs ptLoss at layer3", 18, 0.7, 2.5, 60, 0.5, 1.1);
+    heta_ptLossC4 = new TH2F(N1+"_heta_ptLossC4","CSC eta vs ptLoss at layer4", 18, 0.7, 2.5, 60, 0.5, 1.1);
+
+    heta_ptLossD1 = new TH2F(N1+"_heta_ptLossD1","DT eta vs ptLoss at layer1", 13, 0., 1.3, 60, 0.5, 1.1);
+    heta_ptLossD2 = new TH2F(N1+"_heta_ptLossD2","DT eta vs ptLoss at layer2", 13, 0., 1.3, 60, 0.5, 1.1);
+    heta_ptLossD3 = new TH2F(N1+"_heta_ptLossD3","DT eta vs ptLoss at layer3", 13, 0., 1.3, 60, 0.5, 1.1);
+    heta_ptLossD4 = new TH2F(N1+"_heta_ptLossD4","DT eta vs ptLoss at layer4", 13, 0., 1.3, 60, 0.5, 1.1);
+
+    hpt_ptLossC2 = new TH2F(N1+"_hpt_ptLossC2","CSC pt vs ptLoss at layer2", 250, 0., 250., 80, 0.3, 1.1);
+    hpt_ptLossD1 = new TH2F(N1+"_hpt_ptLossD1","DT pt vs ptLoss at layer1", 250, 0., 250., 80, 0.3, 1.1);
  } 
 
  H2DRecHit1(TString name_, TFile* file) {
@@ -56,7 +69,19 @@ public:
     heta_trk = (TH1F *) file->Get(name+"_heta_trk");
 
     heta_nSeg_seed = (TH2F *) file->Get(name+"_heta_nSeg_seed"); 
+ 
+    heta_ptLossC1 = (TH2F *) file->Get(name+"_heta_ptLossC1");
+    heta_ptLossC2 = (TH2F *) file->Get(name+"_heta_ptLossC2");
+    heta_ptLossC3 = (TH2F *) file->Get(name+"_heta_ptLossC3");
+    heta_ptLossC4 = (TH2F *) file->Get(name+"_heta_ptLossC4");
 
+    heta_ptLossD1 = (TH2F *) file->Get(name+"_heta_ptLossD1");
+    heta_ptLossD2 = (TH2F *) file->Get(name+"_heta_ptLossD2");
+    heta_ptLossD3 = (TH2F *) file->Get(name+"_heta_ptLossD3");
+    heta_ptLossD4 = (TH2F *) file->Get(name+"_heta_ptLossD4");
+
+    hpt_ptLossC2 = (TH2F *) file->Get(name+"_hpt_ptLossC2");
+    hpt_ptLossD1 = (TH2F *) file->Get(name+"_hpt_ptLossD1");
  }
 
  /// Destructor
@@ -76,7 +101,19 @@ public:
     delete heta_trk;
 
     delete heta_nSeg_seed;
+
+    delete heta_ptLossC1;
+    delete heta_ptLossC2;
+    delete heta_ptLossC3;
+    delete heta_ptLossC4;
+
+    delete heta_ptLossD1;
+    delete heta_ptLossD2;
+    delete heta_ptLossD3;
+    delete heta_ptLossD4;
   
+    delete hpt_ptLossC2;
+    delete hpt_ptLossD1;
  }
 
  void Fill1(int csc_nu,int dt_nu,int all_nu,double eta_c, double eta_d,double eta_a, double eta_trk) {
@@ -96,6 +133,34 @@ public:
  void Fill1b(int sim_nu, double eta_sim ) {
       heta_mu2->Fill(eta_sim,sim_nu);
  }
+
+ void Fill1c1(double eta, double ptloss) {
+      heta_ptLossC1->Fill(eta,ptloss);
+ }
+ void Fill1c2(double eta, double ptloss, double pt) {
+      heta_ptLossC2->Fill(eta,ptloss);
+      hpt_ptLossC2->Fill(pt,ptloss);
+ }
+ void Fill1c3(double eta, double ptloss) {
+      heta_ptLossC3->Fill(eta,ptloss);
+ }
+ void Fill1c4(double eta, double ptloss) {
+      heta_ptLossC4->Fill(eta,ptloss);
+ }
+ void Fill1d1(double eta, double ptloss, double pt) {
+      heta_ptLossD1->Fill(eta,ptloss);
+      hpt_ptLossD1->Fill(pt,ptloss);
+ }
+ void Fill1d2(double eta, double ptloss) {
+      heta_ptLossD2->Fill(eta,ptloss);
+ }
+ void Fill1d3(double eta, double ptloss) {
+      heta_ptLossD3->Fill(eta,ptloss);
+ }
+ void Fill1d4(double eta, double ptloss) {
+      heta_ptLossD4->Fill(eta,ptloss);
+ }
+
  void Fill1h(int nSeg_seed, float eta_seed) {
       heta_nSeg_seed->Fill(eta_seed,nSeg_seed);
  }
@@ -117,6 +182,18 @@ public:
 
       heta_nSeg_seed->Write();
 
+      heta_ptLossC1->Write();
+      heta_ptLossC2->Write();
+      heta_ptLossC3->Write();
+      heta_ptLossC4->Write();
+
+      heta_ptLossD1->Write();
+      heta_ptLossD2->Write();
+      heta_ptLossD3->Write();
+      heta_ptLossD4->Write();
+
+      hpt_ptLossC2->Write();
+      hpt_ptLossD1->Write();
  }
 
  TH2F *hcsc_dt;
@@ -134,6 +211,19 @@ public:
  TH1F *heta_trk;
 
  TH2F *heta_nSeg_seed;
+
+ TH2F *heta_ptLossC1;
+ TH2F *heta_ptLossC2;
+ TH2F *heta_ptLossC3;
+ TH2F *heta_ptLossC4;
+
+ TH2F *heta_ptLossD1;
+ TH2F *heta_ptLossD2;
+ TH2F *heta_ptLossD3;
+ TH2F *heta_ptLossD4;
+
+ TH2F *hpt_ptLossC2;
+ TH2F *hpt_ptLossD1;
 
  TString name;
 

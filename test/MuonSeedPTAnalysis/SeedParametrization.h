@@ -144,6 +144,10 @@ private:
   double eta_d;
   double eta_trk;
   double theQ;
+  double etaLc[5];
+  double etaLd[5];
+  double ptLossC[5];
+  double ptLossD[5];
 
   // dPhi and dEta for CSC
   double PhiV1[2][5];

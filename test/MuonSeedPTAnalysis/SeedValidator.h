@@ -132,6 +132,7 @@ private:
   H2DRecHit2 *h_NoSeed;
   H2DRecHit3 *h_NoSta;
   H2DRecHit4 *h_Scope;
+  H2DRecHit5 *h_UnRel;
   TNtuple1 *tr_muon;
 
   // The file which will store the histos
@@ -184,11 +185,15 @@ private:
 
   //  track reader
   int nu_sta;
+  // inner position of sta
+  std::vector<double> sta_phiP;
+  std::vector<double> sta_thetaP;
+  // sta vector information
   std::vector<GlobalVector> sta_gm;
   std::vector<double> sta_qbp;
   std::vector<double> sta_qbpt;
-  std::vector<double> sta_theta;
-  std::vector<double> sta_phi;
+  std::vector<double> sta_thetaV;
+  std::vector<double> sta_phiV;
   std::vector<double> sta_mT;
   std::vector<double> sta_mA;
   std::vector<double> sta_chi2;
@@ -205,7 +210,6 @@ private:
   std::vector<double> y_error;
 
   // Sim info
-
   typedef std::vector<double> layer_pt ;
   typedef std::vector<double> layer_pa ;
 

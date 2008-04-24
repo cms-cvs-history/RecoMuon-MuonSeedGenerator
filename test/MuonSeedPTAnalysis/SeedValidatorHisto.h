@@ -32,8 +32,8 @@ public:
     heta_NSta   = new TH2F(N1+"_heta_NSta", " eta vs N of Sta ", 59, -2.95, 2.95, 20, -0.25, 9.75);
     heta_Sim    = new TH1F(N1+"_heta_Sim", " eta of SimTrack ", 59, -2.95, 2.95);
     heta_simPt  = new TH2F(N1+"_heta_simPt",  " eta vs sim pt ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
-    heta_simQPt = new  TH2F(N1+"_heta_simQPt",  " eta vs sim  Q/Pt ", 59, -2.95, 2.95, 500, -0.025, 0.025);
-    heta_simQPa = new  TH2F(N1+"_heta_simQPa",  " eta vs sim  Q/Pa ", 59, -2.95, 2.95, 500, -0.025, 0.025);
+    heta_simQPt = new  TH2F(N1+"_heta_simQPt",  " eta vs sim  Q/Pt ", 59, -2.95, 2.95, 800, -0.2, 0.2);
+    heta_simQPa = new  TH2F(N1+"_heta_simQPa",  " eta vs sim  Q/Pa ", 59, -2.95, 2.95, 800, -0.2, 0.2);
 
     heta_pt  = new  TH2F(N1+"_heta_pt",  " eta vs seed pt ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
     heta_pa  = new  TH2F(N1+"_heta_pa",  " eta vs seed p  ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
@@ -44,24 +44,22 @@ public:
     heta_QPt    = new  TH2F(N1+"_heta_QPt",  " eta vs  Q/Pt ", 59, -2.95, 2.95, 1000, -0.4, 0.4);
     heta_errQP  = new  TH2F(N1+"_heta_errQP",   " eta vs Q/P  error", 59, -2.95, 2.95, 500, -0.01, 0.24);
     heta_errQPt = new  TH2F(N1+"_heta_errQPt",  " eta vs Q/Pt error", 59, -2.95, 2.95, 500, -0.01, 0.24);
+    heta_resolSd= new  TH2F(N1+"_heta_resolSd",  " eta vs Q/Pt resol", 59, -2.95, 2.95, 500, -1., 1.);
+    Tpt_ptLoss  = new  TH2F(N1+"_Tpt_ptLoss",  " trk pt vs ptLoss ratio ", 250, 0., 250., 80, 0.3, 1.1);
+    Mpt_ptLoss  = new  TH2F(N1+"_Mpt_ptLoss",  " seed pt vs ptLoss ratio ", 250, 0., 250., 80, 0.3, 1.1);
 
     heta_statrk = new TH1F(N1+"_heta_statrk"," eta from sta tracks",59, -2.95, 2.95);
-    heta_staQPt = new TH2F(N1+"_heta_staQPt", " eta vs sta  Q/Pt ", 59, -2.95, 2.95, 500, -0.025, 0.025);
-    heta_staQPa = new TH2F(N1+"_heta_staQPa", " eta vs sta  Q/Pa ", 59, -2.95, 2.95, 500, -0.025, 0.025);
+    heta_staQPt = new TH2F(N1+"_heta_staQPt", " eta vs sta  Q/Pt ", 59, -2.95, 2.95, 800, -0.2, 0.2);
+    heta_staQPa = new TH2F(N1+"_heta_staQPa", " eta vs sta  Q/Pa ", 59, -2.95, 2.95, 800, -0.2, 0.2);
     heta_staPt  = new TH2F(N1+"_heta_staPt",  " eta vs sta  Pt ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
     heta_staPa  = new TH2F(N1+"_heta_staPa",  " eta vs sta  P  ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
     heta_simPt1 = new TH2F(N1+"_heta_simPt1",  " eta vs sim pt ", 59, -2.95, 2.95, 2500, 0.0, 2500.0);
-
-    h_UnRelatedSeed = new TH1F(N1+"_h_UnRelatedSeed", " eta of unrelated seeds ", 59, -2.95, 2.95);
-    h_UnRelatedSta  = new TH1F(N1+"_h_UnRelatedSta", " eta of unrelated sta ", 59, -2.95, 2.95);
-    h_OrphanSeed = new TH2F(N1+"_h_OrphanSeed", "sim eta vs orphan seed eta", 59, -2.95, 2.95, 59, -2.95, 2.95);
-    h_OrphanSta  = new TH2F(N1+"_h_OrphanSta",  "sim eta vs orphan sta  eta", 59, -2.95, 2.95, 59, -2.95, 2.95);
+    heta_resolSA= new  TH2F(N1+"_heta_resolSA", " eta vs Q/Pt resol", 59, -2.95, 2.95, 500, -1., 1.);
 
     heta_errdx = new  TH2F(N1+"_heta_errdx", "eta vs dx/dz error", 59, -2.95, 2.95, 500, 0., 0.01);
     heta_errdy = new  TH2F(N1+"_heta_errdy", "eta vs dy/dz error", 59, -2.95, 2.95, 500, 0., 0.15);
     heta_errx  = new  TH2F(N1+"_heta_errx", "eta vs x error", 59, -2.95, 2.95, 1000, 0., 0.1);
     heta_erry  = new  TH2F(N1+"_heta_erry", "eta vs y error", 59, -2.95, 2.95, 1000, 0., 1.);
-
 
     h_dh_st = new TH2F(N1+"_h_dh_st", " dEta from vector vs station", 19, -4.75, 4.75,400,-1.0,1.0);
     h_df_st = new TH2F(N1+"_h_df_st", " dPhi from vector vs station", 19, -4.75, 4.75,800,-0.1,0.1);
@@ -100,6 +98,9 @@ public:
     heta_QPt     = (TH2F *) file->Get(name+"_heta_QPt");
     heta_errQP   = (TH2F *) file->Get(name+"_heta_errQP");
     heta_errQPt  = (TH2F *) file->Get(name+"_heta_errQPt");
+    heta_resolSd = (TH2F *) file->Get(name+"_heta_resolSd");
+    Tpt_ptLoss   = (TH2F *) file->Get(name+"_Tpt_ptLoss");
+    Mpt_ptLoss   = (TH2F *) file->Get(name+"_Mpt_ptLoss");
 
     heta_statrk = (TH1F *) file->Get(name+"_heta_statrk");
     heta_staQPt = (TH2F *) file->Get(name+"_heta_staQPt");
@@ -107,11 +108,7 @@ public:
     heta_staPt  = (TH2F *) file->Get(name+"_heta_staPt");
     heta_staPa  = (TH2F *) file->Get(name+"_heta_staPa");
     heta_simPt1 = (TH2F *) file->Get(name+"_heta_simPt1");
-
-    h_UnRelatedSeed = (TH1F *) file->Get(name+"_h_UnRelatedSeed");
-    h_UnRelatedSta  = (TH1F *) file->Get(name+"_h_UnRelatedSta");
-    h_OrphanSeed    = (TH2F *) file->Get(name+"_h_OrphanSeed");
-    h_OrphanSta     = (TH2F *) file->Get(name+"_h_OrphanSta");
+    heta_resolSA= (TH2F *) file->Get(name+"_heta_resolSA");
 
     heta_errdx  = (TH2F *) file->Get(name+"_heta_errdx");
     heta_errdy  = (TH2F *) file->Get(name+"_heta_errdy");
@@ -158,6 +155,9 @@ public:
     delete heta_QPt;
     delete heta_errQP;
     delete heta_errQPt;
+    delete heta_resolSd;
+    delete Tpt_ptLoss;
+    delete Mpt_ptLoss;
 
     delete heta_statrk;
     delete heta_staQPt;
@@ -165,11 +165,7 @@ public:
     delete heta_staPt;
     delete heta_staPa;
     delete heta_simPt1;
-
-    delete h_UnRelatedSeed;
-    delete h_UnRelatedSta;
-    delete h_OrphanSeed;
-    delete h_OrphanSta;
+    delete heta_resolSA;
 
     delete heta_errdx;
     delete heta_errdy;
@@ -206,42 +202,34 @@ public:
       hPa_Pt->Fill(Pt,Pa);
       hPa_nSeg->Fill(Pa,nu_seg);
  }
- void Fill1d1(double seed_eta) {
-      h_UnRelatedSeed->Fill(seed_eta);
- } 
- void Fill1d2(double sta_eta) {
-      h_UnRelatedSta->Fill(sta_eta);
- } 
- void Fill1d3(double seed_eta, double sim_eta) {
-      h_OrphanSeed->Fill(sim_eta,seed_eta );
- } 
- void Fill1d4(double sta_eta, double sim_eta) {
-      h_OrphanSta->Fill(sim_eta,sta_eta);
- } 
  void Fill1f(double eta, double err_dx, double err_dy, double err_x, double err_y) {
       heta_errdx->Fill(eta,err_dx);
       heta_errdy->Fill(eta,err_dy);
       heta_errx->Fill(eta,err_x);
       heta_erry->Fill(eta,err_y);
  }
- void Fill1g(double seed_mT, double seed_mA, double bestSeed_mT, float eta_seed) {
+ void Fill1g(double seed_mT, double seed_mA, double bestSeed_mT, float eta_seed, double ptLoss, double ptTrk) {
       heta_pt->Fill(eta_seed,seed_mT);
       heta_pa->Fill(eta_seed,seed_mA);
       heta_bestPt->Fill(eta_seed,bestSeed_mT);
+      Tpt_ptLoss->Fill(ptTrk, ptLoss);
+      Mpt_ptLoss->Fill(seed_mT, ptLoss);
  }
- void Fill1i(double pull_qbp, float eta_seed, double QPt, double pull_qbpt, double errqbp, double errqbpt){
+ void Fill1i(double pull_qbp, float eta_seed, double QPt, double pull_qbpt, double errqbp, double errqbpt, double resol_qbpt){
       heta_pullQP->Fill(eta_seed, pull_qbp);
       heta_pullQPt->Fill(eta_seed, pull_qbpt);
       heta_QPt->Fill(eta_seed, QPt);
       heta_errQP->Fill(eta_seed, errqbp);
       heta_errQPt->Fill(eta_seed, errqbpt);
+      heta_resolSd->Fill(eta_seed, resol_qbpt);
  }
- void Fill1j(double eta_sta, double sta_qbp, double sta_qbpt, double sta_pt, double sta_pa, double sim_pt) {
+ void Fill1j(double eta_sta, double sta_qbp, double sta_qbpt, double sta_pt, double sta_pa, double sim_pt, double resol_qbpt) {
       heta_staQPt->Fill(eta_sta, sta_qbpt);
       heta_staQPa->Fill(eta_sta, sta_qbp);
       heta_staPt ->Fill(eta_sta, sta_pt);
       heta_simPt1->Fill(eta_sta, sim_pt);
       heta_staPa ->Fill(eta_sta, sta_pa);
+      heta_resolSA ->Fill(eta_sta, resol_qbpt);
  }
  void Fill1e(int station, double dh_v, double df_v, double dx_p, double dy_p) {
       h_dh_st->Fill(station, dh_v);    
@@ -276,6 +264,9 @@ public:
       heta_QPt->Write();
       heta_errQP->Write();
       heta_errQPt->Write();
+      heta_resolSd->Write();
+      Tpt_ptLoss->Write();
+      Mpt_ptLoss->Write();
 
       heta_statrk->Write();
       heta_staQPt->Write();
@@ -283,11 +274,7 @@ public:
       heta_staPt->Write();
       heta_staPa->Write();
       heta_simPt1->Write();
-
-      h_UnRelatedSeed->Write();
-      h_UnRelatedSta->Write();
-      h_OrphanSeed->Write();
-      h_OrphanSta->Write();
+      heta_resolSA->Write();
 
       heta_errdx->Write();
       heta_errdy->Write();
@@ -327,6 +314,9 @@ public:
  TH2F *heta_QPt;
  TH2F *heta_errQP;
  TH2F *heta_errQPt;
+ TH2F *heta_resolSd;
+ TH2F *Tpt_ptLoss;
+ TH2F *Mpt_ptLoss;
 
  TH1F *heta_statrk;
  TH2F *heta_staQPt;
@@ -334,11 +324,7 @@ public:
  TH2F *heta_staPt;
  TH2F *heta_staPa;
  TH2F *heta_simPt1;
-
- TH1F *h_UnRelatedSeed;
- TH1F *h_UnRelatedSta;
- TH2F *h_OrphanSeed;
- TH2F *h_OrphanSta;
+ TH2F *heta_resolSA;
 
  TH2F *heta_errdx;
  TH2F *heta_errdy;
@@ -673,4 +659,82 @@ public:
 
 };
 
+class H2DRecHit5 {
+public:
+
+ H2DRecHit5() {
+
+    h_UnRelatedSeed = new TH2F("h_UnRelatedSeed", " eta of unrelated seeds ", 59, -2.95, 2.95, 2500,0.,2500.);
+    h_UnRelatedSta  = new TH2F("h_UnRelatedSta", " eta of unrelated sta ", 59, -2.95, 2.95, 2500,0.,2500.);
+    h_OrphanSeed = new TH2F("h_OrphanSeed", "sim eta vs orphan seed eta", 59, -2.95, 2.95, 59, -2.95, 2.95);
+    h_OrphanStaEta = new TH2F("h_OrphanStaEta", "sim eta vs orphanSta eta", 59, -2.95, 2.95, 59, -2.95, 2.95);
+    h_OrphanStaPhi = new TH2F("h_OrphanStaPhi", "sim phi vs orphanSta phi", 100, -3.1416, 3.1416, 100, -3.1416, 3.1416);
+    h_OrphanSeedPt = new TH2F("h_OrphanSeedPt", "sim eta vs orphan seed Pt", 59, -2.95, 2.95, 2500, 0., 2500);
+    h_OrphanStaPt  = new TH2F("h_OrphanStaPt",  "sim eta vs orphan sta  Pt", 59, -2.95, 2.95, 2500, 0., 2500);
+
+ } 
+ 
+ H2DRecHit5( TFile* file ) {
+
+    h_UnRelatedSeed = (TH2F *) file->Get("h_UnRelatedSeed");
+    h_UnRelatedSta  = (TH2F *) file->Get("h_UnRelatedSta");
+    h_OrphanSeed    = (TH2F *) file->Get("h_OrphanSeed");
+    h_OrphanStaEta  = (TH2F *) file->Get("h_OrphanStaEta");
+    h_OrphanStaPhi  = (TH2F *) file->Get("h_OrphanStaPhi");
+
+    h_OrphanSeedPt  = (TH2F *) file->Get("h_OrphanSeedPt");
+    h_OrphanStaPt   = (TH2F *) file->Get("h_OrphanStaPt");
+
+ } 
+ 
+  /// Destructor
+ virtual ~H2DRecHit5() {
+
+    delete h_UnRelatedSeed;
+    delete h_UnRelatedSta;
+    delete h_OrphanSeed;
+    delete h_OrphanStaEta;
+    delete h_OrphanStaPhi;
+    delete h_OrphanSeedPt;
+    delete h_OrphanStaPt;
+
+ }
+
+ void Fill5a(double seed_eta, double seed_pt) {
+      h_UnRelatedSeed->Fill(seed_eta, seed_pt);
+ } 
+ void Fill5b(double seed_eta, double sim_eta, double seed_pt) {
+      h_OrphanSeed->Fill(sim_eta, seed_eta );
+      h_OrphanSeedPt->Fill(sim_eta, seed_pt );
+ } 
+ void Fill5c(double sta_eta, double sta_pt) {
+      h_UnRelatedSta->Fill(sta_eta, sta_pt);
+ } 
+ void Fill5d(double sta_eta, double sim_eta, double sta_pt, double sta_phi, double sim_phi) {
+      h_OrphanStaEta->Fill(sim_eta, sta_eta);
+      h_OrphanStaPhi->Fill(sim_phi, sta_phi);
+      h_OrphanStaPt->Fill(sim_eta, sta_pt);
+ }
+ 
+
+ void Write() {
+
+      h_UnRelatedSeed->Write();
+      h_UnRelatedSta->Write();
+      h_OrphanSeed->Write();
+      h_OrphanStaEta->Write();
+      h_OrphanStaPhi->Write();
+      h_OrphanSeedPt->Write();
+      h_OrphanStaPt->Write();
+ }
+
+ TH2F *h_UnRelatedSeed;
+ TH2F *h_UnRelatedSta;
+ TH2F *h_OrphanSeed;
+ TH2F *h_OrphanStaEta;
+ TH2F *h_OrphanStaPhi;
+ TH2F *h_OrphanSeedPt;
+ TH2F *h_OrphanStaPt;
+
+};
 #endif
