@@ -6,6 +6,8 @@ module MuonSeed = MuonSeedProducer {
 
   using MuonServiceProxy
 
+  using ptSeedParameterization
+
   # enable the DT chamber
   bool EnableDTMeasurement    = true
   InputTag DTSegmentLabel     = dt4DSegments
@@ -49,4 +51,6 @@ module MuonSeed = MuonSeedProducer {
 
   # Flag for internal debugging
   bool DebugMuonSeed          = false    
-}  
+ 
+ 
+} 
