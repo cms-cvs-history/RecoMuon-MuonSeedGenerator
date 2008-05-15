@@ -22,8 +22,9 @@
 #include <DataFormats/CSCRecHit/interface/CSCSegmentCollection.h>
 #include <DataFormats/DTRecHit/interface/DTRecSegment4DCollection.h>
 #include <DataFormats/DTRecHit/interface/DTRecSegment4D.h>
-#include <DataFormats/DTRecHit/interface/DTRecSegment2DCollection.h>
-#include <DataFormats/DTRecHit/interface/DTRecSegment2D.h>
+//#include <DataFormats/DTRecHit/interface/DTRecSegment2DCollection.h>
+//#include <DataFormats/DTRecHit/interface/DTRecSegment2D.h>
+#include <DataFormats/DTRecHit/interface/DTChamberRecSegment2D.h>
 #include <DataFormats/DTRecHit/interface/DTRecHitCollection.h>
 #include <DataFormats/DTRecHit/interface/DTRecHit1D.h>
 
@@ -131,6 +132,7 @@ private:
   //dtsegment_stat output
   int dtseg_stat[6];
   int dtseg_stat1[6];
+  int dt2Dseg_stat[6];
 
   // SeedfromRecHit
   //std::vector<CSCRecHit2D> csc_rh;
@@ -193,6 +195,7 @@ private:
   std::string cscSegmentLabel;
   std::string recHitLabel;
   std::string dtSegmentLabel;
+  //std::string dt2DSegmentLabel;
   std::string dtrecHitLabel;
   std::string simHitLabel;
   std::string simTrackLabel;

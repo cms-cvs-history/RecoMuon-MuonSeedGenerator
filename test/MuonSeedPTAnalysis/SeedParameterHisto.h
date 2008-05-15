@@ -229,7 +229,7 @@ public:
 
 };
 
-
+// For all CSC
 class H2DRecHit2 {
 public:
 
@@ -244,37 +244,37 @@ public:
     hst_csc_nu1= new TH2F(N2+"_hst_csc_nu1","station vs csc seg number w/ > 5 hits seg", 6, 0, 6, 20, -0.25, 9.75);
     hChi2_d_Dof= new TH1F(N2+"_hChi2_d_Dof"," chi2/dof ",250,0.,500. ); 
 
-    heta_dphi01 = new TH2F(N2+"_heta_dphi01", "eta vs dphi01", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi12 = new TH2F(N2+"_heta_dphi12", "eta vs dphi12", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi13 = new TH2F(N2+"_heta_dphi13", "eta vs dphi13", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi14 = new TH2F(N2+"_heta_dphi14", "eta vs dphi14", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi23 = new TH2F(N2+"_heta_dphi23", "eta vs dphi23", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi24 = new TH2F(N2+"_heta_dphi24", "eta vs dphi24", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_dphi34 = new TH2F(N2+"_heta_dphi34", "eta vs dphi34", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi01 = new TH2F(N2+"01_eta_dphi", "eta vs dphi01", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi12 = new TH2F(N2+"12_eta_dphi", "eta vs dphi12", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi13 = new TH2F(N2+"13_eta_dphi", "eta vs dphi13", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi14 = new TH2F(N2+"14_eta_dphi", "eta vs dphi14", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi23 = new TH2F(N2+"23_eta_dphi", "eta vs dphi23", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi24 = new TH2F(N2+"24_eta_dphi", "eta vs dphi24", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi34 = new TH2F(N2+"34_eta_dphi", "eta vs dphi34", 150, 1., 2.5, 200, -0.03, 0.03);
 
-    heta_rdphi01 = new TH2F(N2+"_heta_rdphi01", "eta vs rdphi01", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi12 = new TH2F(N2+"_heta_rdphi12", "eta vs rdphi12", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi13 = new TH2F(N2+"_heta_rdphi13", "eta vs rdphi13", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi14 = new TH2F(N2+"_heta_rdphi14", "eta vs rdphi14", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi23 = new TH2F(N2+"_heta_rdphi23", "eta vs rdphi23", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi24 = new TH2F(N2+"_heta_rdphi24", "eta vs rdphi24", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi34 = new TH2F(N2+"_heta_rdphi34", "eta vs rdphi34", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi01 = new TH2F(N2+"01_eta_rdphi", "eta vs rdphi01", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi12 = new TH2F(N2+"12_eta_rdphi", "eta vs rdphi12", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi13 = new TH2F(N2+"13_eta_rdphi", "eta vs rdphi13", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi14 = new TH2F(N2+"14_eta_rdphi", "eta vs rdphi14", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi23 = new TH2F(N2+"23_eta_rdphi", "eta vs rdphi23", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi24 = new TH2F(N2+"24_eta_rdphi", "eta vs rdphi24", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi34 = new TH2F(N2+"34_eta_rdphi", "eta vs rdphi34", 150, 1., 2.5, 200, -0.03, 0.03);
 
-    heta_dphiPt01 = new TH2F(N2+"_heta_dphiPt01", "eta vs dphi*Pt01", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt12 = new TH2F(N2+"_heta_dphiPt12", "eta vs dphi*Pt12", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt13 = new TH2F(N2+"_heta_dphiPt13", "eta vs dphi*Pt13", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt14 = new TH2F(N2+"_heta_dphiPt14", "eta vs dphi*Pt14", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt23 = new TH2F(N2+"_heta_dphiPt23", "eta vs dphi*Pt23", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt24 = new TH2F(N2+"_heta_dphiPt24", "eta vs dphi*Pt24", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_dphiPt34 = new TH2F(N2+"_heta_dphiPt34", "eta vs dphi*Pt34", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt01 = new TH2F(N2+"01_eta_dphiPt", "eta vs dphi*Pt01", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt12 = new TH2F(N2+"12_eta_dphiPt", "eta vs dphi*Pt12", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt13 = new TH2F(N2+"13_eta_dphiPt", "eta vs dphi*Pt13", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt14 = new TH2F(N2+"14_eta_dphiPt", "eta vs dphi*Pt14", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt23 = new TH2F(N2+"23_eta_dphiPt", "eta vs dphi*Pt23", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt24 = new TH2F(N2+"24_eta_dphiPt", "eta vs dphi*Pt24", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_dphiPt34 = new TH2F(N2+"34_eta_dphiPt", "eta vs dphi*Pt34", 150, 1., 2.5, 200, -1.5, 1.5);
 
-    heta_rdphiPt01 = new TH2F(N2+"_heta_rdphiPt01", "eta vs rdphi*Pt01", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt12 = new TH2F(N2+"_heta_rdphiPt12", "eta vs rdphi*Pt12", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt13 = new TH2F(N2+"_heta_rdphiPt13", "eta vs rdphi*Pt13", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt14 = new TH2F(N2+"_heta_rdphiPt14", "eta vs rdphi*Pt14", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt23 = new TH2F(N2+"_heta_rdphiPt23", "eta vs rdphi*Pt23", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt24 = new TH2F(N2+"_heta_rdphiPt24", "eta vs rdphi*Pt24", 150, 1., 2.5, 200, -1.5, 1.5);
-    heta_rdphiPt34 = new TH2F(N2+"_heta_rdphiPt34", "eta vs rdphi*Pt34", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt01 = new TH2F(N2+"01_eta_rdphiPt", "eta vs rdphi*Pt01", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt12 = new TH2F(N2+"12_eta_rdphiPt", "eta vs rdphi*Pt12", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt13 = new TH2F(N2+"13_eta_rdphiPt", "eta vs rdphi*Pt13", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt14 = new TH2F(N2+"14_eta_rdphiPt", "eta vs rdphi*Pt14", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt23 = new TH2F(N2+"23_eta_rdphiPt", "eta vs rdphi*Pt23", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt24 = new TH2F(N2+"24_eta_rdphiPt", "eta vs rdphi*Pt24", 150, 1., 2.5, 200, -1.5, 1.5);
+    eta_rdphiPt34 = new TH2F(N2+"34_eta_rdphiPt", "eta vs rdphi*Pt34", 150, 1., 2.5, 200, -1.5, 1.5);
 
   }
 
@@ -288,37 +288,37 @@ public:
     hst_csc_nu1= (TH2F *) file->Get(name+"_hst_csc_nu1");
     hChi2_d_Dof= (TH1F *) file->Get(name+"_hChi2_d_Dof");
 
-    heta_dphi01 = (TH2F *) file->Get(name+"_heta_dphi01");
-    heta_dphi12 = (TH2F *) file->Get(name+"_heta_dphi12");
-    heta_dphi13 = (TH2F *) file->Get(name+"_heta_dphi13");
-    heta_dphi14 = (TH2F *) file->Get(name+"_heta_dphi14");
-    heta_dphi23 = (TH2F *) file->Get(name+"_heta_dphi23");
-    heta_dphi24 = (TH2F *) file->Get(name+"_heta_dphi24");
-    heta_dphi34 = (TH2F *) file->Get(name+"_heta_dphi34");
+    eta_dphi01 = (TH2F *) file->Get(name+"01_eta_dphi");
+    eta_dphi12 = (TH2F *) file->Get(name+"12_eta_dphi");
+    eta_dphi13 = (TH2F *) file->Get(name+"13_eta_dphi");
+    eta_dphi14 = (TH2F *) file->Get(name+"14_eta_dphi");
+    eta_dphi23 = (TH2F *) file->Get(name+"23_eta_dphi");
+    eta_dphi24 = (TH2F *) file->Get(name+"24_eta_dphi");
+    eta_dphi34 = (TH2F *) file->Get(name+"34_eta_dphi");
 
-    heta_rdphi01 = (TH2F *) file->Get(name+"_heta_rdphi01");
-    heta_rdphi12 = (TH2F *) file->Get(name+"_heta_rdphi12");
-    heta_rdphi13 = (TH2F *) file->Get(name+"_heta_rdphi13");
-    heta_rdphi14 = (TH2F *) file->Get(name+"_heta_rdphi14");
-    heta_rdphi23 = (TH2F *) file->Get(name+"_heta_rdphi23");
-    heta_rdphi24 = (TH2F *) file->Get(name+"_heta_rdphi24");
-    heta_rdphi34 = (TH2F *) file->Get(name+"_heta_rdphi34");
+    eta_rdphi01 = (TH2F *) file->Get(name+"01_eta_rdphi");
+    eta_rdphi12 = (TH2F *) file->Get(name+"12_eta_rdphi");
+    eta_rdphi13 = (TH2F *) file->Get(name+"13_eta_rdphi");
+    eta_rdphi14 = (TH2F *) file->Get(name+"14_eta_rdphi");
+    eta_rdphi23 = (TH2F *) file->Get(name+"23_eta_rdphi");
+    eta_rdphi24 = (TH2F *) file->Get(name+"24_eta_rdphi");
+    eta_rdphi34 = (TH2F *) file->Get(name+"34_eta_rdphi");
    
-    heta_dphiPt01 = (TH2F *) file->Get(name+"_heta_dphiPt01");
-    heta_dphiPt12 = (TH2F *) file->Get(name+"_heta_dphiPt12");
-    heta_dphiPt13 = (TH2F *) file->Get(name+"_heta_dphiPt13");
-    heta_dphiPt14 = (TH2F *) file->Get(name+"_heta_dphiPt14");
-    heta_dphiPt23 = (TH2F *) file->Get(name+"_heta_dphiPt23");
-    heta_dphiPt24 = (TH2F *) file->Get(name+"_heta_dphiPt24");
-    heta_dphiPt34 = (TH2F *) file->Get(name+"_heta_dphiPt34");
+    eta_dphiPt01 = (TH2F *) file->Get(name+"01_eta_dphiPt");
+    eta_dphiPt12 = (TH2F *) file->Get(name+"12_eta_dphiPt");
+    eta_dphiPt13 = (TH2F *) file->Get(name+"13_eta_dphiPt");
+    eta_dphiPt14 = (TH2F *) file->Get(name+"14_eta_dphiPt");
+    eta_dphiPt23 = (TH2F *) file->Get(name+"23_eta_dphiPt");
+    eta_dphiPt24 = (TH2F *) file->Get(name+"24_eta_dphiPt");
+    eta_dphiPt34 = (TH2F *) file->Get(name+"34_eta_dphiPt");
 
-    heta_rdphiPt01 = (TH2F *) file->Get(name+"_heta_rdphiPt01");
-    heta_rdphiPt12 = (TH2F *) file->Get(name+"_heta_rdphiPt12");
-    heta_rdphiPt13 = (TH2F *) file->Get(name+"_heta_rdphiPt13");
-    heta_rdphiPt14 = (TH2F *) file->Get(name+"_heta_rdphiPt14");
-    heta_rdphiPt23 = (TH2F *) file->Get(name+"_heta_rdphiPt23");
-    heta_rdphiPt24 = (TH2F *) file->Get(name+"_heta_rdphiPt24");
-    heta_rdphiPt34 = (TH2F *) file->Get(name+"_heta_rdphiPt34");
+    eta_rdphiPt01 = (TH2F *) file->Get(name+"01_eta_rdphiPt");
+    eta_rdphiPt12 = (TH2F *) file->Get(name+"12_eta_rdphiPt");
+    eta_rdphiPt13 = (TH2F *) file->Get(name+"13_eta_rdphiPt");
+    eta_rdphiPt14 = (TH2F *) file->Get(name+"14_eta_rdphiPt");
+    eta_rdphiPt23 = (TH2F *) file->Get(name+"23_eta_rdphiPt");
+    eta_rdphiPt24 = (TH2F *) file->Get(name+"24_eta_rdphiPt");
+    eta_rdphiPt34 = (TH2F *) file->Get(name+"43_eta_rdphiPt");
 
   } 
 
@@ -332,37 +332,37 @@ public:
     delete hst_csc_nu1;
     delete hChi2_d_Dof;
 
-    delete heta_dphi01;
-    delete heta_dphi12;
-    delete heta_dphi13;
-    delete heta_dphi14;
-    delete heta_dphi23;
-    delete heta_dphi24;
-    delete heta_dphi34;
+    delete eta_dphi01;
+    delete eta_dphi12;
+    delete eta_dphi13;
+    delete eta_dphi14;
+    delete eta_dphi23;
+    delete eta_dphi24;
+    delete eta_dphi34;
 
-    delete heta_rdphi01;
-    delete heta_rdphi12;
-    delete heta_rdphi13;
-    delete heta_rdphi14;
-    delete heta_rdphi23;
-    delete heta_rdphi24;
-    delete heta_rdphi34;
+    delete eta_rdphi01;
+    delete eta_rdphi12;
+    delete eta_rdphi13;
+    delete eta_rdphi14;
+    delete eta_rdphi23;
+    delete eta_rdphi24;
+    delete eta_rdphi34;
 
-    delete heta_dphiPt01;
-    delete heta_dphiPt12;
-    delete heta_dphiPt13;
-    delete heta_dphiPt14;
-    delete heta_dphiPt23;
-    delete heta_dphiPt24;
-    delete heta_dphiPt34;
+    delete eta_dphiPt01;
+    delete eta_dphiPt12;
+    delete eta_dphiPt13;
+    delete eta_dphiPt14;
+    delete eta_dphiPt23;
+    delete eta_dphiPt24;
+    delete eta_dphiPt34;
 
-    delete heta_rdphiPt01;
-    delete heta_rdphiPt12;
-    delete heta_rdphiPt13;
-    delete heta_rdphiPt14;
-    delete heta_rdphiPt23;
-    delete heta_rdphiPt24;
-    delete heta_rdphiPt34;
+    delete eta_rdphiPt01;
+    delete eta_rdphiPt12;
+    delete eta_rdphiPt13;
+    delete eta_rdphiPt14;
+    delete eta_rdphiPt23;
+    delete eta_rdphiPt24;
+    delete eta_rdphiPt34;
  
   }
 
@@ -386,77 +386,53 @@ public:
 
   void Fill5_0(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi01->Fill(eta,dphi);
-    heta_rdphi01->Fill(eta_r,dphir);
-    heta_dphiPt01->Fill(eta,ptxdphi);
-    heta_rdphiPt01->Fill(eta_r,ptxdphir);
+    eta_dphi01->Fill(eta,dphi);
+    eta_rdphi01->Fill(eta_r,dphir);
+    eta_dphiPt01->Fill(eta,ptxdphi);
+    eta_rdphiPt01->Fill(eta_r,ptxdphir);
   }
   void Fill5_1(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi12->Fill(eta,dphi);
-    heta_rdphi12->Fill(eta_r,dphir);
-    heta_dphiPt12->Fill(eta,ptxdphi);
-    heta_rdphiPt12->Fill(eta_r,ptxdphir);
+    eta_dphi12->Fill(eta,dphi);
+    eta_rdphi12->Fill(eta_r,dphir);
+    eta_dphiPt12->Fill(eta,ptxdphi);
+    eta_rdphiPt12->Fill(eta_r,ptxdphir);
   }
   void Fill5_2(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi13->Fill(eta,dphi);
-    heta_rdphi13->Fill(eta_r,dphir);
-    heta_dphiPt13->Fill(eta,ptxdphi);
-    heta_rdphiPt13->Fill(eta_r,ptxdphir);
+    eta_dphi13->Fill(eta,dphi);
+    eta_rdphi13->Fill(eta_r,dphir);
+    eta_dphiPt13->Fill(eta,ptxdphi);
+    eta_rdphiPt13->Fill(eta_r,ptxdphir);
   }
   void Fill5_3(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi14->Fill(eta,dphi);
-    heta_rdphi14->Fill(eta_r,dphir);
-    heta_dphiPt14->Fill(eta,ptxdphi);
-    heta_rdphiPt14->Fill(eta_r,ptxdphir);
+    eta_dphi14->Fill(eta,dphi);
+    eta_rdphi14->Fill(eta_r,dphir);
+    eta_dphiPt14->Fill(eta,ptxdphi);
+    eta_rdphiPt14->Fill(eta_r,ptxdphir);
   }
   void Fill5_4(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi23->Fill(eta,dphi);
-    heta_rdphi23->Fill(eta_r,dphir);
-    heta_dphiPt23->Fill(eta,ptxdphi);
-    heta_rdphiPt23->Fill(eta_r,ptxdphir);
+    eta_dphi23->Fill(eta,dphi);
+    eta_rdphi23->Fill(eta_r,dphir);
+    eta_dphiPt23->Fill(eta,ptxdphi);
+    eta_rdphiPt23->Fill(eta_r,ptxdphir);
   }
   void Fill5_5(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi24->Fill(eta,dphi);
-    heta_rdphi24->Fill(eta_r,dphir);
-    heta_dphiPt24->Fill(eta,ptxdphi);
-    heta_rdphiPt24->Fill(eta_r,ptxdphir);
+    eta_dphi24->Fill(eta,dphi);
+    eta_rdphi24->Fill(eta_r,dphir);
+    eta_dphiPt24->Fill(eta,ptxdphi);
+    eta_rdphiPt24->Fill(eta_r,ptxdphir);
   }
   void Fill5_6(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
-    heta_dphi34->Fill(eta,dphi);
-    heta_rdphi34->Fill(eta_r,dphir);
-    heta_dphiPt34->Fill(eta,ptxdphi);
-    heta_rdphiPt34->Fill(eta_r,ptxdphir);
+    eta_dphi34->Fill(eta,dphi);
+    eta_rdphi34->Fill(eta_r,dphir);
+    eta_dphiPt34->Fill(eta,ptxdphi);
+    eta_rdphiPt34->Fill(eta_r,ptxdphir);
   }
-
-  /*
-  void Fill6(double ptxdphi12, double ptxdphi13, double ptxdphi14,
-             double ptxdphi23, double ptxdphi24, double ptxdphi34,
-             double eta2, double eta3, double eta4 )
-  {
-     heta_dphiPt12->Fill(eta2,ptxdphi12);
-     heta_dphiPt13->Fill(eta3,ptxdphi13);
-     heta_dphiPt14->Fill(eta4,ptxdphi14);
-     heta_dphiPt23->Fill(eta3,ptxdphi23);
-     heta_dphiPt24->Fill(eta4,ptxdphi24);
-     heta_dphiPt34->Fill(eta4,ptxdphi34);
-  }
-  void Fill6a(double ptxdphi12, double ptxdphi13, double ptxdphi14,
-              double ptxdphi23, double ptxdphi24, double ptxdphi34,
-              double eta2, double eta3, double eta4 )
-  {
-     heta_rdphiPt12->Fill(eta2,ptxdphi12);
-     heta_rdphiPt13->Fill(eta3,ptxdphi13);
-     heta_rdphiPt14->Fill(eta4,ptxdphi14);
-     heta_rdphiPt23->Fill(eta3,ptxdphi23);
-     heta_rdphiPt24->Fill(eta4,ptxdphi24);
-     heta_rdphiPt34->Fill(eta4,ptxdphi34);
-  }*/
 
   void Write() {
 
@@ -467,37 +443,37 @@ public:
        hst_csc_nu1->Write();
        hChi2_d_Dof->Write();
  
-       heta_dphi01->Write();
-       heta_dphi12->Write();
-       heta_dphi13->Write();
-       heta_dphi14->Write();
-       heta_dphi23->Write();
-       heta_dphi24->Write();
-       heta_dphi34->Write();
+       eta_dphi01->Write();
+       eta_dphi12->Write();
+       eta_dphi13->Write();
+       eta_dphi14->Write();
+       eta_dphi23->Write();
+       eta_dphi24->Write();
+       eta_dphi34->Write();
 
-       heta_rdphi01->Write();
-       heta_rdphi12->Write();
-       heta_rdphi13->Write();
-       heta_rdphi14->Write();
-       heta_rdphi23->Write();
-       heta_rdphi24->Write();
-       heta_rdphi34->Write();
+       eta_rdphi01->Write();
+       eta_rdphi12->Write();
+       eta_rdphi13->Write();
+       eta_rdphi14->Write();
+       eta_rdphi23->Write();
+       eta_rdphi24->Write();
+       eta_rdphi34->Write();
 
-       heta_dphiPt01->Write();
-       heta_dphiPt12->Write();
-       heta_dphiPt13->Write();
-       heta_dphiPt14->Write();
-       heta_dphiPt23->Write();
-       heta_dphiPt24->Write();
-       heta_dphiPt34->Write();
+       eta_dphiPt01->Write();
+       eta_dphiPt12->Write();
+       eta_dphiPt13->Write();
+       eta_dphiPt14->Write();
+       eta_dphiPt23->Write();
+       eta_dphiPt24->Write();
+       eta_dphiPt34->Write();
 
-       heta_rdphiPt01->Write();
-       heta_rdphiPt12->Write();
-       heta_rdphiPt13->Write();
-       heta_rdphiPt14->Write();
-       heta_rdphiPt23->Write();
-       heta_rdphiPt24->Write();
-       heta_rdphiPt34->Write();
+       eta_rdphiPt01->Write();
+       eta_rdphiPt12->Write();
+       eta_rdphiPt13->Write();
+       eta_rdphiPt14->Write();
+       eta_rdphiPt23->Write();
+       eta_rdphiPt24->Write();
+       eta_rdphiPt34->Write();
   
   }
 
@@ -508,37 +484,37 @@ public:
   TH2F *hst_csc_nu1;
   TH1F *hChi2_d_Dof;
 
-  TH2F *heta_dphi01;
-  TH2F *heta_dphi12;
-  TH2F *heta_dphi13;
-  TH2F *heta_dphi14;
-  TH2F *heta_dphi23;
-  TH2F *heta_dphi24;
-  TH2F *heta_dphi34;
+  TH2F *eta_dphi01;
+  TH2F *eta_dphi12;
+  TH2F *eta_dphi13;
+  TH2F *eta_dphi14;
+  TH2F *eta_dphi23;
+  TH2F *eta_dphi24;
+  TH2F *eta_dphi34;
 
-  TH2F *heta_rdphi01;
-  TH2F *heta_rdphi12;
-  TH2F *heta_rdphi13;
-  TH2F *heta_rdphi14;
-  TH2F *heta_rdphi23;
-  TH2F *heta_rdphi24;
-  TH2F *heta_rdphi34;
+  TH2F *eta_rdphi01;
+  TH2F *eta_rdphi12;
+  TH2F *eta_rdphi13;
+  TH2F *eta_rdphi14;
+  TH2F *eta_rdphi23;
+  TH2F *eta_rdphi24;
+  TH2F *eta_rdphi34;
 
-  TH2F *heta_dphiPt01;
-  TH2F *heta_dphiPt12;
-  TH2F *heta_dphiPt13;
-  TH2F *heta_dphiPt14;
-  TH2F *heta_dphiPt23;
-  TH2F *heta_dphiPt24;
-  TH2F *heta_dphiPt34;
+  TH2F *eta_dphiPt01;
+  TH2F *eta_dphiPt12;
+  TH2F *eta_dphiPt13;
+  TH2F *eta_dphiPt14;
+  TH2F *eta_dphiPt23;
+  TH2F *eta_dphiPt24;
+  TH2F *eta_dphiPt34;
 
-  TH2F *heta_rdphiPt01;
-  TH2F *heta_rdphiPt12;
-  TH2F *heta_rdphiPt13;
-  TH2F *heta_rdphiPt14;
-  TH2F *heta_rdphiPt23;
-  TH2F *heta_rdphiPt24;
-  TH2F *heta_rdphiPt34;
+  TH2F *eta_rdphiPt01;
+  TH2F *eta_rdphiPt12;
+  TH2F *eta_rdphiPt13;
+  TH2F *eta_rdphiPt14;
+  TH2F *eta_rdphiPt23;
+  TH2F *eta_rdphiPt24;
+  TH2F *eta_rdphiPt34;
 
   TString name;
 };
@@ -561,33 +537,33 @@ public:
     hrdphi_Pt   = new TH2F(N3+"_hrdphi_Pt", "rec dphi vs Pt", 50, 5., 205., 200, -0.06, 0.06);
     hrdeta_Pt   = new TH2F(N3+"_hrdeta_Pt", "rec deta vs Pt", 50, 5., 205., 202, -0.01, 0.01);
 
-    hbeta_dphi12 = new TH2F(N3+"_hbeta_dphi12", "eta vs dphi12", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_dphi13 = new TH2F(N3+"_hbeta_dphi13", "eta vs dphi13", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_dphi14 = new TH2F(N3+"_hbeta_dphi14", "eta vs dphi14", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_dphi23 = new TH2F(N3+"_hbeta_dphi23", "eta vs dphi23", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_dphi24 = new TH2F(N3+"_hbeta_dphi24", "eta vs dphi24", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_dphi34 = new TH2F(N3+"_hbeta_dphi34", "eta vs dphi34", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi12 = new TH2F(N3+"12_eta_dphi", "eta vs dphi12", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi13 = new TH2F(N3+"13_eta_dphi", "eta vs dphi13", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi14 = new TH2F(N3+"14_eta_dphi", "eta vs dphi14", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi23 = new TH2F(N3+"23_eta_dphi", "eta vs dphi23", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi24 = new TH2F(N3+"24_eta_dphi", "eta vs dphi24", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_dphi34 = new TH2F(N3+"34_eta_dphi", "eta vs dphi34", 110, 0., 1.1, 400, -0.01, 0.01);
 
-    hbeta_rdphi12 = new TH2F(N3+"_hbeta_rdphi12", "eta vs rdphi12", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_rdphi13 = new TH2F(N3+"_hbeta_rdphi13", "eta vs rdphi13", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_rdphi14 = new TH2F(N3+"_hbeta_rdphi14", "eta vs rdphi14", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_rdphi23 = new TH2F(N3+"_hbeta_rdphi23", "eta vs rdphi23", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_rdphi24 = new TH2F(N3+"_hbeta_rdphi24", "eta vs rdphi24", 110, 0., 1.1, 400, -0.01, 0.01);
-    hbeta_rdphi34 = new TH2F(N3+"_hbeta_rdphi34", "eta vs rdphi34", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi12 = new TH2F(N3+"12_eta_rdphi", "eta vs rdphi12", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi13 = new TH2F(N3+"13_eta_rdphi", "eta vs rdphi13", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi14 = new TH2F(N3+"14_eta_rdphi", "eta vs rdphi14", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi23 = new TH2F(N3+"23_eta_rdphi", "eta vs rdphi23", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi24 = new TH2F(N3+"24_eta_rdphi", "eta vs rdphi24", 110, 0., 1.1, 400, -0.01, 0.01);
+    hbeta_rdphi34 = new TH2F(N3+"34_eta_rdphi", "eta vs rdphi34", 110, 0., 1.1, 400, -0.01, 0.01);
 
-    hbeta_dphiPt12 = new TH2F(N3+"_hbeta_dphiPt12", "eta vs dphi*Pt12", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_dphiPt13 = new TH2F(N3+"_hbeta_dphiPt13", "eta vs dphi*Pt13", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_dphiPt14 = new TH2F(N3+"_hbeta_dphiPt14", "eta vs dphi*Pt14", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_dphiPt23 = new TH2F(N3+"_hbeta_dphiPt23", "eta vs dphi*Pt23", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_dphiPt24 = new TH2F(N3+"_hbeta_dphiPt24", "eta vs dphi*Pt24", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_dphiPt34 = new TH2F(N3+"_hbeta_dphiPt34", "eta vs dphi*Pt34", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt12 = new TH2F(N3+"12_eta_dphiPt", "eta vs dphi*Pt12", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt13 = new TH2F(N3+"13_eta_dphiPt", "eta vs dphi*Pt13", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt14 = new TH2F(N3+"14_eta_dphiPt", "eta vs dphi*Pt14", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt23 = new TH2F(N3+"23_eta_dphiPt", "eta vs dphi*Pt23", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt24 = new TH2F(N3+"24_eta_dphiPt", "eta vs dphi*Pt24", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_dphiPt34 = new TH2F(N3+"34_eta_dphiPt", "eta vs dphi*Pt34", 110, 0., 1.1, 200, -1.5, 1.5);
 
-    hbeta_rdphiPt12 = new TH2F(N3+"_hbeta_rdphiPt12", "eta vs rdphi*Pt12", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_rdphiPt13 = new TH2F(N3+"_hbeta_rdphiPt13", "eta vs rdphi*Pt13", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_rdphiPt14 = new TH2F(N3+"_hbeta_rdphiPt14", "eta vs rdphi*Pt14", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_rdphiPt23 = new TH2F(N3+"_hbeta_rdphiPt23", "eta vs rdphi*Pt23", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_rdphiPt24 = new TH2F(N3+"_hbeta_rdphiPt24", "eta vs rdphi*Pt24", 110, 0., 1.1, 200, -1.5, 1.5);
-    hbeta_rdphiPt34 = new TH2F(N3+"_hbeta_rdphiPt34", "eta vs rdphi*Pt34", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt12 = new TH2F(N3+"12_eta_rdphiPt", "eta vs rdphi*Pt12", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt13 = new TH2F(N3+"13_eta_rdphiPt", "eta vs rdphi*Pt13", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt14 = new TH2F(N3+"14_eta_rdphiPt", "eta vs rdphi*Pt14", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt23 = new TH2F(N3+"23_eta_rdphiPt", "eta vs rdphi*Pt23", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt24 = new TH2F(N3+"24_eta_rdphiPt", "eta vs rdphi*Pt24", 110, 0., 1.1, 200, -1.5, 1.5);
+    hbeta_rdphiPt34 = new TH2F(N3+"34_eta_rdphiPt", "eta vs rdphi*Pt34", 110, 0., 1.1, 200, -1.5, 1.5);
 
   }
 
@@ -604,33 +580,33 @@ public:
     hrdeta_Pt   = (TH2F *) file->Get(name+"_hrdeta_Pt");
     hrdphi_Pt   = (TH2F *) file->Get(name+"_hrdphi_Pt");
 
-    hbeta_dphi12 = (TH2F *) file->Get(name+"_hbeta_dphi12");
-    hbeta_dphi13 = (TH2F *) file->Get(name+"_hbeta_dphi13");
-    hbeta_dphi14 = (TH2F *) file->Get(name+"_hbeta_dphi14");
-    hbeta_dphi23 = (TH2F *) file->Get(name+"_hbeta_dphi23");
-    hbeta_dphi24 = (TH2F *) file->Get(name+"_hbeta_dphi24");
-    hbeta_dphi34 = (TH2F *) file->Get(name+"_hbeta_dphi34");
+    hbeta_dphi12 = (TH2F *) file->Get(name+"12_eta_dphi");
+    hbeta_dphi13 = (TH2F *) file->Get(name+"13_eta_dphi");
+    hbeta_dphi14 = (TH2F *) file->Get(name+"14_eta_dphi");
+    hbeta_dphi23 = (TH2F *) file->Get(name+"23_eta_dphi");
+    hbeta_dphi24 = (TH2F *) file->Get(name+"24_eta_dphi");
+    hbeta_dphi34 = (TH2F *) file->Get(name+"34_eta_dphi");
 
-    hbeta_rdphi12 = (TH2F *) file->Get(name+"_hbeta_rdphi12");
-    hbeta_rdphi13 = (TH2F *) file->Get(name+"_hbeta_rdphi13");
-    hbeta_rdphi14 = (TH2F *) file->Get(name+"_hbeta_rdphi14");
-    hbeta_rdphi23 = (TH2F *) file->Get(name+"_hbeta_rdphi23");
-    hbeta_rdphi24 = (TH2F *) file->Get(name+"_hbeta_rdphi24");
-    hbeta_rdphi34 = (TH2F *) file->Get(name+"_hbeta_rdphi34");
+    hbeta_rdphi12 = (TH2F *) file->Get(name+"12_eta_rdphi");
+    hbeta_rdphi13 = (TH2F *) file->Get(name+"13_eta_rdphi");
+    hbeta_rdphi14 = (TH2F *) file->Get(name+"14_eta_rdphi");
+    hbeta_rdphi23 = (TH2F *) file->Get(name+"23_eta_rdphi");
+    hbeta_rdphi24 = (TH2F *) file->Get(name+"24_eta_rdphi");
+    hbeta_rdphi34 = (TH2F *) file->Get(name+"34_eta_rdphi");
 
-    hbeta_dphiPt12 = (TH2F *) file->Get(name+"_hbeta_dphiPt12");
-    hbeta_dphiPt13 = (TH2F *) file->Get(name+"_hbeta_dphiPt13");
-    hbeta_dphiPt14 = (TH2F *) file->Get(name+"_hbeta_dphiPt14");
-    hbeta_dphiPt23 = (TH2F *) file->Get(name+"_hbeta_dphiPt23");
-    hbeta_dphiPt24 = (TH2F *) file->Get(name+"_hbeta_dphiPt24");
-    hbeta_dphiPt34 = (TH2F *) file->Get(name+"_hbeta_dphiPt34");
+    hbeta_dphiPt12 = (TH2F *) file->Get(name+"12_eta_dphiPt");
+    hbeta_dphiPt13 = (TH2F *) file->Get(name+"13_eta_dphiPt");
+    hbeta_dphiPt14 = (TH2F *) file->Get(name+"14_eta_dphiPt");
+    hbeta_dphiPt23 = (TH2F *) file->Get(name+"23_eta_dphiPt");
+    hbeta_dphiPt24 = (TH2F *) file->Get(name+"24_eta_dphiPt");
+    hbeta_dphiPt34 = (TH2F *) file->Get(name+"34_eta_dphiPt");
 
-    hbeta_rdphiPt12 = (TH2F *) file->Get(name+"_hbeta_rdphiPt12");
-    hbeta_rdphiPt13 = (TH2F *) file->Get(name+"_hbeta_rdphiPt13");
-    hbeta_rdphiPt14 = (TH2F *) file->Get(name+"_hbeta_rdphiPt14");
-    hbeta_rdphiPt23 = (TH2F *) file->Get(name+"_hbeta_rdphiPt23");
-    hbeta_rdphiPt24 = (TH2F *) file->Get(name+"_hbeta_rdphiPt24");
-    hbeta_rdphiPt34 = (TH2F *) file->Get(name+"_hbeta_rdphiPt34");
+    hbeta_rdphiPt12 = (TH2F *) file->Get(name+"12_eta_rdphiPt");
+    hbeta_rdphiPt13 = (TH2F *) file->Get(name+"13_eta_rdphiPt");
+    hbeta_rdphiPt14 = (TH2F *) file->Get(name+"14_eta_rdphiPt");
+    hbeta_rdphiPt23 = (TH2F *) file->Get(name+"23_eta_rdphiPt");
+    hbeta_rdphiPt24 = (TH2F *) file->Get(name+"24_eta_rdphiPt");
+    hbeta_rdphiPt34 = (TH2F *) file->Get(name+"34_eta_rdphiPt");
 
   } 
 
@@ -694,32 +670,6 @@ public:
        hst_dt_nu->Fill(k,dt_nu);
        hst_dt_nu1->Fill(k,dt_nu1);
   }
-  /*
-  void Fill7(double ptxdphi12, double ptxdphi13, double ptxdphi14,
-             double ptxdphi23, double ptxdphi24, double ptxdphi34,
-             double eta1, double eta2, double eta3)
-  {
-     hbeta_dphiPt12->Fill(eta1,ptxdphi12);
-     hbeta_dphiPt13->Fill(eta1,ptxdphi13);
-     hbeta_dphiPt14->Fill(eta1,ptxdphi14);
-     hbeta_dphiPt23->Fill(eta2,ptxdphi23);
-     hbeta_dphiPt24->Fill(eta2,ptxdphi24);
-     hbeta_dphiPt34->Fill(eta3,ptxdphi34);
-
-  }
-  void Fill7a(double ptxdphi12, double ptxdphi13, double ptxdphi14,
-              double ptxdphi23, double ptxdphi24, double ptxdphi34,
-              double eta1, double eta2, double eta3, double dphi13, double pt)
-  {
-     hbeta_rdphiPt12->Fill(eta1,ptxdphi12);
-     hbeta_rdphiPt13->Fill(eta1,ptxdphi13);
-     hbeta_rdphiPt14->Fill(eta1,ptxdphi14);
-     hbeta_rdphiPt23->Fill(eta2,ptxdphi23);
-     hbeta_rdphiPt24->Fill(eta2,ptxdphi24);
-     hbeta_rdphiPt34->Fill(eta3,ptxdphi34);
-     hrdphi_Pt->Fill(pt, dphi13);
-     hrdeta_Pt->Fill(pt, (eta3-eta1) );
-  }*/
 
   void Fill6_1(double dphi,double dphir,double ptxdphi,double ptxdphir,double eta,double eta_r)
   {
@@ -854,16 +804,16 @@ public:
     TString N4 = name_.c_str();
     name=N4;
 
-    heta_dphiA  = new TH2F(N4+"_heta_dphiA", "eta vs dphit @ME", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphiA = new TH2F(N4+"_heta_rdphiA", "eta vs rdphi @ME", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_detaA  = new TH2F(N4+"_heta_detaA", "eta vs deta  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
-    heta_rdetaA  = new TH2F(N4+"_heta_rdetaA", "eta vs rdeta  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
+    eta_dphiA  = new TH2F(N4+"_eta_dphiA", "eta vs dphit @ME", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphiA = new TH2F(N4+"_eta_rdphiA", "eta vs rdphi @ME", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_detaA  = new TH2F(N4+"_eta_detaA", "eta vs deta  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
+    eta_rdetaA  = new TH2F(N4+"_eta_rdetaA", "eta vs rdeta  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
 
-    heta_dphiPtA = new TH2F(N4+"_heta_dphiPtA", "eta vs dphi*Pt @ME", 150, 1., 2.5, 200, -1.0, 1.0);
-    heta_rdphiPtA = new TH2F(N4+"_heta_rdphiPtA", "eta vs rdphi*Pt @ME", 150, 1., 2.5, 200, -1.0, 1.0);
+    eta_dphiPtA = new TH2F(N4+"_eta_dphiPtA", "eta vs dphi*Pt @ME", 150, 1., 2.5, 200, -1.0, 1.0);
+    eta_rdphiPtA = new TH2F(N4+"_eta_rdphiPtA", "eta vs rdphi*Pt @ME", 150, 1., 2.5, 200, -1.0, 1.0);
 
-    heta_Pt    = new TH2F(N4+"_heta_Pt", "eta vs Pt @ME", 150, 1., 2.5, 50, 5.0, 205.0);
-    heta_dphir = new TH2F(N4+"_heta_dphir", "eta vs dphi resolution @ME", 150, 1., 2.5, 101, -0.0005, 0.0005);
+    eta_Pt    = new TH2F(N4+"_eta_Pt", "eta vs Pt @ME", 150, 1., 2.5, 50, 5.0, 205.0);
+    eta_dphir = new TH2F(N4+"_eta_dphir", "eta vs dphi resolution @ME", 150, 1., 2.5, 101, -0.0005, 0.0005);
     hpt_dphiA  = new TH2F(N4+"_hpt_dphiA", "pt vs dphi @ME", 50, 5., 205, 200, 0.0, 0.1);
     hpt_rdphiA = new TH2F(N4+"_hpt_rdphiA", "pt vs rdphi @ME", 50, 5., 205, 200, 0.0, 0.1);
   }
@@ -871,16 +821,16 @@ public:
  H2DRecHit4(TString name_, TFile* file) {
     name=name_;
 
-    heta_dphiA = (TH2F *) file->Get(name+"_heta_dphiA");
-    heta_rdphiA = (TH2F *) file->Get(name+"_heta_rdphiA");
-    heta_detaA = (TH2F *) file->Get(name+"_heta_detaA");
-    heta_rdetaA = (TH2F *) file->Get(name+"_heta_rdetaA");
+    eta_dphiA = (TH2F *) file->Get(name+"_eta_dphiA");
+    eta_rdphiA = (TH2F *) file->Get(name+"_eta_rdphiA");
+    eta_detaA = (TH2F *) file->Get(name+"_eta_detaA");
+    eta_rdetaA = (TH2F *) file->Get(name+"_eta_rdetaA");
 
-    heta_dphiPtA = (TH2F *) file->Get(name+"_heta_dphiPtA");
-    heta_rdphiPtA = (TH2F *) file->Get(name+"_heta_rdphiPtA");
+    eta_dphiPtA = (TH2F *) file->Get(name+"_eta_dphiPtA");
+    eta_rdphiPtA = (TH2F *) file->Get(name+"_eta_rdphiPtA");
 
-    heta_Pt    = (TH2F *) file->Get(name+"_heta_Pt");
-    heta_dphir = (TH2F *) file->Get(name+"_heta_dphir");
+    eta_Pt    = (TH2F *) file->Get(name+"_eta_Pt");
+    eta_dphir = (TH2F *) file->Get(name+"_eta_dphir");
     hpt_dphiA  = (TH2F *) file->Get(name+"_hpt_dphiA");
     hpt_rdphiA = (TH2F *) file->Get(name+"_hpt_rdphiA");
   } 
@@ -888,64 +838,64 @@ public:
   /// Destructor
   virtual ~H2DRecHit4() {
 
-    delete heta_dphiA;
-    delete heta_rdphiA;
-    delete heta_detaA;
-    delete heta_rdetaA;
+    delete eta_dphiA;
+    delete eta_rdphiA;
+    delete eta_detaA;
+    delete eta_rdetaA;
 
-    delete heta_dphiPtA;
-    delete heta_rdphiPtA;
+    delete eta_dphiPtA;
+    delete eta_rdphiPtA;
 
-    delete heta_dphir;
-    delete heta_Pt;
+    delete eta_dphir;
+    delete eta_Pt;
     delete hpt_dphiA;
     delete hpt_rdphiA;
   }
 
   void Fill8(double ptxdphi, double dphi, double deta, double eta, double pt)
   {
-     heta_dphiA->Fill(eta,dphi);
-     heta_detaA->Fill(eta,deta);
-     heta_dphiPtA->Fill(eta,ptxdphi);
+     eta_dphiA->Fill(eta,dphi);
+     eta_detaA->Fill(eta,deta);
+     eta_dphiPtA->Fill(eta,ptxdphi);
      hpt_dphiA->Fill(pt,dphi);
   }
   void Fill8a(double ptxrdphi, double rdphi, double rdeta, double reta, double pt, double dphir)
   {
-     heta_rdphiA->Fill(reta,rdphi);
-     heta_rdetaA->Fill(reta,rdeta);
-     heta_rdphiPtA->Fill(reta,ptxrdphi);
+     eta_rdphiA->Fill(reta,rdphi);
+     eta_rdetaA->Fill(reta,rdeta);
+     eta_rdphiPtA->Fill(reta,ptxrdphi);
      hpt_rdphiA->Fill(pt,rdphi);
-     heta_Pt->Fill(reta,pt);
-     heta_dphir->Fill(reta,dphir);
+     eta_Pt->Fill(reta,pt);
+     eta_dphir->Fill(reta,dphir);
   }
 
   void Write() {
-       heta_dphiA->Write();
-       heta_rdphiA->Write();
-       heta_detaA->Write();
-       heta_rdetaA->Write();
+       eta_dphiA->Write();
+       eta_rdphiA->Write();
+       eta_detaA->Write();
+       eta_rdetaA->Write();
 
-       heta_dphiPtA->Write();
-       heta_rdphiPtA->Write();
+       eta_dphiPtA->Write();
+       eta_rdphiPtA->Write();
 
        hpt_dphiA->Write();
        hpt_rdphiA->Write();
-       heta_Pt->Write();
-       heta_dphir->Write();
+       eta_Pt->Write();
+       eta_dphir->Write();
   }
 
-  TH2F *heta_dphiA;
-  TH2F *heta_rdphiA;
-  TH2F *heta_detaA;
-  TH2F *heta_rdetaA;
+  TH2F *eta_dphiA;
+  TH2F *eta_rdphiA;
+  TH2F *eta_detaA;
+  TH2F *eta_rdetaA;
 
-  TH2F *heta_dphiPtA;
-  TH2F *heta_rdphiPtA;
+  TH2F *eta_dphiPtA;
+  TH2F *eta_rdphiPtA;
 
   TH2F *hpt_dphiA;
   TH2F *hpt_rdphiA;
-  TH2F *heta_Pt;
-  TH2F *heta_dphir;
+  TH2F *eta_Pt;
+  TH2F *eta_dphir;
 
   TString name;
 };
@@ -957,16 +907,16 @@ public:
     TString N5 = name_.c_str();
     name=N5;
 
-    heta_dphiA  = new TH2F(N5+"_heta_dphiA", "eta vs dphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
-    heta_rdphiA = new TH2F(N5+"_heta_rdphiA", "eta vs rdphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
-    heta_detaA  = new TH2F(N5+"_heta_detaA", "eta vs deta  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
-    heta_rdetaA  = new TH2F(N5+"_heta_rdetaA", "eta vs rdeta  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
+    eta_dphiA  = new TH2F(N5+"_eta_dphiA", "eta vs dphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
+    eta_rdphiA = new TH2F(N5+"_eta_rdphiA", "eta vs rdphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
+    eta_detaA  = new TH2F(N5+"_eta_detaA", "eta vs deta  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
+    eta_rdetaA  = new TH2F(N5+"_eta_rdetaA", "eta vs rdeta  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
 
-    heta_dphiPtA  = new TH2F(N5+"_heta_dphiPtA", "eta vs dphi*Pt @MB", 110, 0., 1.1, 200, -1.0, 1.0);
-    heta_rdphiPtA = new TH2F(N5+"_heta_rdphiPtA", "eta vs rdphi*Pt @MB", 110, 0., 1.1, 200, -1.0, 1.0);
+    eta_dphiPtA  = new TH2F(N5+"_eta_dphiPtA", "eta vs dphi*Pt @MB", 110, 0., 1.1, 200, -1.0, 1.0);
+    eta_rdphiPtA = new TH2F(N5+"_eta_rdphiPtA", "eta vs rdphi*Pt @MB", 110, 0., 1.1, 200, -1.0, 1.0);
 
-    heta_Pt    = new TH2F(N5+"_heta_Pt", "eta vs Pt @MB", 110, 0., 1.1, 50, 5.0, 205.0);
-    heta_dphir = new TH2F(N5+"_heta_dphir", "eta vs dphi resolution @MB", 110, 0., 1.1, 101, -0.0005, 0.0005);
+    eta_Pt    = new TH2F(N5+"_eta_Pt", "eta vs Pt @MB", 110, 0., 1.1, 50, 5.0, 205.0);
+    eta_dphir = new TH2F(N5+"_eta_dphir", "eta vs dphi resolution @MB", 110, 0., 1.1, 101, -0.0005, 0.0005);
     hpt_dphiA  = new TH2F(N5+"_hpt_dphiA", "pt vs dphi @MB", 50, 5., 205.0, 200, 0.0, 0.1);
     hpt_rdphiA = new TH2F(N5+"_hpt_rdphiA", "pt vs rdphi @MB", 50, 5., 205.0, 200, 0.0, 0.1);
   }
@@ -974,16 +924,16 @@ public:
  H2DRecHit5(TString name_, TFile* file) {
     name=name_;
 
-    heta_dphiA = (TH2F *) file->Get(name+"_heta_dphiA");
-    heta_rdphiA = (TH2F *) file->Get(name+"_heta_rdphiA");
-    heta_detaA = (TH2F *) file->Get(name+"_heta_detaA");
-    heta_rdetaA = (TH2F *) file->Get(name+"_heta_rdetaA");
+    eta_dphiA = (TH2F *) file->Get(name+"_eta_dphiA");
+    eta_rdphiA = (TH2F *) file->Get(name+"_eta_rdphiA");
+    eta_detaA = (TH2F *) file->Get(name+"_eta_detaA");
+    eta_rdetaA = (TH2F *) file->Get(name+"_eta_rdetaA");
 
-    heta_dphiPtA = (TH2F *) file->Get(name+"_heta_dphiPtA");
-    heta_rdphiPtA = (TH2F *) file->Get(name+"_heta_rdphiPtA");
+    eta_dphiPtA = (TH2F *) file->Get(name+"_eta_dphiPtA");
+    eta_rdphiPtA = (TH2F *) file->Get(name+"_eta_rdphiPtA");
 
-    heta_Pt    = (TH2F *) file->Get(name+"_heta_Pt");
-    heta_dphir = (TH2F *) file->Get(name+"_heta_dphir");
+    eta_Pt    = (TH2F *) file->Get(name+"_eta_Pt");
+    eta_dphir = (TH2F *) file->Get(name+"_eta_dphir");
     hpt_dphiA  = (TH2F *) file->Get(name+"_hpt_dphiA");
     hpt_rdphiA = (TH2F *) file->Get(name+"_hpt_rdphiA");
   } 
@@ -991,65 +941,65 @@ public:
   /// Destructor
   virtual ~H2DRecHit5() {
 
-    delete heta_dphiA;
-    delete heta_rdphiA;
-    delete heta_detaA;
-    delete heta_rdetaA;
+    delete eta_dphiA;
+    delete eta_rdphiA;
+    delete eta_detaA;
+    delete eta_rdetaA;
 
-    delete heta_dphiPtA;
-    delete heta_rdphiPtA;
+    delete eta_dphiPtA;
+    delete eta_rdphiPtA;
 
-    delete heta_Pt;
-    delete heta_dphir;
+    delete eta_Pt;
+    delete eta_dphir;
     delete hpt_dphiA;
     delete hpt_rdphiA;
   }
 
   void Fill9(double ptxdphi,double dphi, double deta, double eta, double pt)
   {
-     heta_dphiA->Fill(eta,dphi);
-     heta_detaA->Fill(eta,deta);
-     heta_dphiPtA->Fill(eta,ptxdphi);
+     eta_dphiA->Fill(eta,dphi);
+     eta_detaA->Fill(eta,deta);
+     eta_dphiPtA->Fill(eta,ptxdphi);
      hpt_dphiA->Fill(pt,dphi);
   }
   void Fill9a(double ptxrdphi, double rdphi, double rdeta, double reta, double pt, double dphir)
   {
-     heta_rdphiA->Fill(reta,rdphi);
-     heta_rdetaA->Fill(reta,rdeta);
-     heta_rdphiPtA->Fill(reta,ptxrdphi);
+     eta_rdphiA->Fill(reta,rdphi);
+     eta_rdetaA->Fill(reta,rdeta);
+     eta_rdphiPtA->Fill(reta,ptxrdphi);
      hpt_rdphiA->Fill(pt,rdphi);
-     heta_Pt->Fill(reta,pt);
-     heta_dphir->Fill(reta,dphir);
+     eta_Pt->Fill(reta,pt);
+     eta_dphir->Fill(reta,dphir);
   }
 
   void Write() {
 
-       heta_dphiA->Write();
-       heta_rdphiA->Write();
-       heta_detaA->Write();
-       heta_rdetaA->Write();
+       eta_dphiA->Write();
+       eta_rdphiA->Write();
+       eta_detaA->Write();
+       eta_rdetaA->Write();
 
-       heta_dphiPtA->Write();
-       heta_rdphiPtA->Write();
+       eta_dphiPtA->Write();
+       eta_rdphiPtA->Write();
 
        hpt_dphiA->Write();
        hpt_rdphiA->Write();
-       heta_Pt->Write();
-       heta_dphir->Write();
+       eta_Pt->Write();
+       eta_dphir->Write();
   }
 
-  TH2F *heta_dphiA;
-  TH2F *heta_rdphiA;
-  TH2F *heta_detaA;
-  TH2F *heta_rdetaA;
+  TH2F *eta_dphiA;
+  TH2F *eta_rdphiA;
+  TH2F *eta_detaA;
+  TH2F *eta_rdetaA;
 
-  TH2F *heta_dphiPtA;
-  TH2F *heta_rdphiPtA;
+  TH2F *eta_dphiPtA;
+  TH2F *eta_rdphiPtA;
 
   TH2F *hpt_dphiA;
   TH2F *hpt_rdphiA;
-  TH2F *heta_Pt;
-  TH2F *heta_dphir;
+  TH2F *eta_Pt;
+  TH2F *eta_dphir;
 
   TString name;
 };
@@ -1061,16 +1011,16 @@ public:
     TString N6 = name_.c_str();
     name=N6;
 
-    heta_dphi1  = new TH2F(N6+"_heta_dphi1", "eta vs dphit @ME", 150, 1., 2.5, 200, -0.03, 0.03);
-    heta_rdphi1 = new TH2F(N6+"_heta_rdphi1", "eta vs rdphi @ME", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_dphi1  = new TH2F(N6+"_eta_dphi1", "eta vs dphit @ME", 150, 1., 2.5, 200, -0.03, 0.03);
+    eta_rdphi1 = new TH2F(N6+"_eta_rdphi1", "eta vs rdphi @ME", 150, 1., 2.5, 200, -0.03, 0.03);
 
-    heta_phir  = new TH2F(N6+"_heta_phir", "eta vs phi resolution  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
-    heta_etar  = new TH2F(N6+"_heta_etar", "eta vs eta resolution  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
+    eta_phir  = new TH2F(N6+"_eta_phir", "eta vs phi resolution  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
+    eta_etar  = new TH2F(N6+"_eta_etar", "eta vs eta resolution  @ME", 150, 1., 2.5, 101, -0.01, 0.01);
 
-    heta_dphiPt1 = new TH2F(N6+"_heta_dphiPt1", "eta vs dphi*Pt 1", 150, 1., 2.5, 400, -3., 3.);
-    heta_rdphiPt1 = new TH2F(N6+"_heta_rdphiPt1", "eta vs rdphi*Pt 1", 150, 1., 2.5, 400, -3., 3.);
+    eta_dphiPt1 = new TH2F(N6+"_eta_dphiPt1", "eta vs dphi*Pt 1", 150, 1., 2.5, 400, -3., 3.);
+    eta_rdphiPt1 = new TH2F(N6+"_eta_rdphiPt1", "eta vs rdphi*Pt 1", 150, 1., 2.5, 400, -3., 3.);
 
-    heta_Pt1   = new TH2F(N6+"_heta_Pt1", "eta vs Pt @ME", 150, 1., 2.5, 50, 5.0, 205.0);
+    eta_Pt1   = new TH2F(N6+"_eta_Pt1", "eta vs Pt @ME", 150, 1., 2.5, 50, 5.0, 205.0);
     hpt_dphiA1 = new TH2F(N6+"_hpt_dphiA1", "pt vs dphi @ME", 50, 5., 205, 200, 0.0, 0.1);
     hpt_rdphiA1 = new TH2F(N6+"_hpt_rdphiA1", "pt vs rdphi @ME", 50, 5., 205, 200, 0.0, 0.1);
   }
@@ -1078,15 +1028,15 @@ public:
  H2DRecHit6(TString name_, TFile* file) {
     name=name_;
 
-    heta_dphi1  = (TH2F *) file->Get(name+"_heta_dphi1");
-    heta_rdphi1 = (TH2F *) file->Get(name+"_heta_rdphi1");
+    eta_dphi1  = (TH2F *) file->Get(name+"_eta_dphi1");
+    eta_rdphi1 = (TH2F *) file->Get(name+"_eta_rdphi1");
 
-    heta_phir = (TH2F *) file->Get(name+"_heta_phir");
-    heta_etar = (TH2F *) file->Get(name+"_heta_etar");
+    eta_phir = (TH2F *) file->Get(name+"_eta_phir");
+    eta_etar = (TH2F *) file->Get(name+"_eta_etar");
 
-    heta_Pt1 = (TH2F *) file->Get(name+"_heta_Pt1");
-    heta_dphiPt1 = (TH2F *) file->Get(name+"_heta_dphiPt1");
-    heta_rdphiPt1 = (TH2F *) file->Get(name+"_heta_rdphiPt1");
+    eta_Pt1 = (TH2F *) file->Get(name+"_eta_Pt1");
+    eta_dphiPt1 = (TH2F *) file->Get(name+"_eta_dphiPt1");
+    eta_rdphiPt1 = (TH2F *) file->Get(name+"_eta_rdphiPt1");
 
     hpt_dphiA1 = (TH2F *) file->Get(name+"_hpt_dphiA");
     hpt_rdphiA1 = (TH2F *) file->Get(name+"_hpt_rdphiA");
@@ -1095,65 +1045,65 @@ public:
   /// Destructor
   virtual ~H2DRecHit6() {
 
-    delete  heta_dphi1;
-    delete  heta_rdphi1;
+    delete  eta_dphi1;
+    delete  eta_rdphi1;
 
-    delete  heta_phir;
-    delete  heta_etar;
+    delete  eta_phir;
+    delete  eta_etar;
 
-    delete heta_dphiPt1;
-    delete heta_rdphiPt1;
+    delete eta_dphiPt1;
+    delete eta_rdphiPt1;
 
-    delete heta_Pt1;
+    delete eta_Pt1;
     delete hpt_dphiA1;
     delete hpt_rdphiA1;
   }
 
   void Fill8b(double ptxdphi1, double dphi, double eta, double pt) 
   {
-     heta_dphiPt1->Fill(eta,ptxdphi1);
-     heta_dphi1->Fill(eta,dphi);
+     eta_dphiPt1->Fill(eta,ptxdphi1);
+     eta_dphi1->Fill(eta,dphi);
      hpt_dphiA1->Fill(pt,dphi);
   }
   void Fill8c(double ptxrdphi1, double rdphi, double phir, double etar, double reta, double pt) 
   {
-     heta_rdphiPt1->Fill(reta,ptxrdphi1);
-     heta_rdphi1->Fill(reta,rdphi);
+     eta_rdphiPt1->Fill(reta,ptxrdphi1);
+     eta_rdphi1->Fill(reta,rdphi);
 
-     heta_phir->Fill(reta,phir);
-     heta_etar->Fill(reta,etar);
+     eta_phir->Fill(reta,phir);
+     eta_etar->Fill(reta,etar);
      hpt_rdphiA1->Fill(pt,rdphi);
-     heta_Pt1->Fill(reta,pt);
+     eta_Pt1->Fill(reta,pt);
   }
 
   void Write() {
  
-       heta_dphi1->Write();
-       heta_rdphi1->Write();
+       eta_dphi1->Write();
+       eta_rdphi1->Write();
 
-       heta_phir->Write();
-       heta_etar->Write();
+       eta_phir->Write();
+       eta_etar->Write();
 
-       heta_dphiPt1->Write();
-       heta_rdphiPt1->Write();
+       eta_dphiPt1->Write();
+       eta_rdphiPt1->Write();
 
        hpt_dphiA1->Write();
        hpt_rdphiA1->Write();
-       heta_Pt1->Write();
+       eta_Pt1->Write();
   }
  
-  TH2F *heta_dphi1;
-  TH2F *heta_rdphi1;
+  TH2F *eta_dphi1;
+  TH2F *eta_rdphi1;
  
-  TH2F *heta_phir;
-  TH2F *heta_etar;
+  TH2F *eta_phir;
+  TH2F *eta_etar;
 
-  TH2F *heta_dphiPt1;
-  TH2F *heta_rdphiPt1;
+  TH2F *eta_dphiPt1;
+  TH2F *eta_rdphiPt1;
 
   TH2F *hpt_dphiA1;
   TH2F *hpt_rdphiA1;
-  TH2F *heta_Pt1;
+  TH2F *eta_Pt1;
 
   TString name;
 };
@@ -1165,16 +1115,16 @@ public:
     TString N7 = name_.c_str();
     name=N7;
 
-    heta_dphi1  = new TH2F(N7+"_heta_dphi1", "eta vs dphit @MB", 110, 0., 1.1, 200, -0.03, 0.03);
-    heta_rdphi1 = new TH2F(N7+"_heta_rdphi1", "eta vs rdphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
+    eta_dphi1  = new TH2F(N7+"_eta_dphi1", "eta vs dphit @MB", 110, 0., 1.1, 200, -0.03, 0.03);
+    eta_rdphi1 = new TH2F(N7+"_eta_rdphi1", "eta vs rdphi @MB", 110, 0., 1.1, 200, -0.03, 0.03);
 
-    heta_phir  = new TH2F(N7+"_heta_phir", "eta vs phi resolution  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
-    heta_etar  = new TH2F(N7+"_heta_etar", "eta vs eta resolution  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
+    eta_phir  = new TH2F(N7+"_eta_phir", "eta vs phi resolution  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
+    eta_etar  = new TH2F(N7+"_eta_etar", "eta vs eta resolution  @MB", 110, 0., 1.1, 101, -0.01, 0.01);
 
-    heta_dphiPt1  = new TH2F(N7+"_heta_dphiPt1", "eta vs dphi*Pt @MB", 110, 0., 1.1, 400, -3., 3.);
-    heta_rdphiPt1 = new TH2F(N7+"_heta_rdphiPt1", "eta vs rdphi*Pt @MB", 110, 0., 1.1, 400, -3., 3.);
+    eta_dphiPt1  = new TH2F(N7+"_eta_dphiPt1", "eta vs dphi*Pt @MB", 110, 0., 1.1, 400, -3., 3.);
+    eta_rdphiPt1 = new TH2F(N7+"_eta_rdphiPt1", "eta vs rdphi*Pt @MB", 110, 0., 1.1, 400, -3., 3.);
 
-    heta_Pt1   = new TH2F(N7+"_heta_Pt1", "eta vs Pt @MB", 150, 1., 2.5, 50, 5.0, 205.0);
+    eta_Pt1   = new TH2F(N7+"_eta_Pt1", "eta vs Pt @MB", 150, 1., 2.5, 50, 5.0, 205.0);
     hpt_dphiA1 = new TH2F(N7+"_hpt_dphiA1", "pt vs dphi @ME", 50, 5., 205, 200, 0.0, 0.1);
     hpt_rdphiA1 = new TH2F(N7+"_hpt_rdphiA1", "pt vs rdphi @ME", 50, 5., 205, 200, 0.0, 0.1);
   }
@@ -1182,16 +1132,16 @@ public:
  H2DRecHit7(TString name_, TFile* file) {
     name=name_;
 
-    heta_dphi1  = (TH2F *) file->Get(name+"_heta_dphi1");
-    heta_rdphi1 = (TH2F *) file->Get(name+"_heta_rdphi1");
+    eta_dphi1  = (TH2F *) file->Get(name+"_eta_dphi1");
+    eta_rdphi1 = (TH2F *) file->Get(name+"_eta_rdphi1");
 
-    heta_phir = (TH2F *) file->Get(name+"_heta_phir");
-    heta_etar = (TH2F *) file->Get(name+"_heta_etar");
+    eta_phir = (TH2F *) file->Get(name+"_eta_phir");
+    eta_etar = (TH2F *) file->Get(name+"_eta_etar");
 
-    heta_dphiPt1 = (TH2F *) file->Get(name+"_heta_dphiPt1");
-    heta_rdphiPt1 = (TH2F *) file->Get(name+"_heta_rdphiPt1");
+    eta_dphiPt1 = (TH2F *) file->Get(name+"_eta_dphiPt1");
+    eta_rdphiPt1 = (TH2F *) file->Get(name+"_eta_rdphiPt1");
 
-    heta_Pt1 = (TH2F *) file->Get(name+"_heta_Pt1");
+    eta_Pt1 = (TH2F *) file->Get(name+"_eta_Pt1");
     hpt_dphiA1 = (TH2F *) file->Get(name+"_hpt_dphiA");
     hpt_rdphiA1 = (TH2F *) file->Get(name+"_hpt_rdphiA");
   } 
@@ -1199,65 +1149,65 @@ public:
   /// Destructor
   virtual ~H2DRecHit7() {
 
-    delete  heta_dphi1;
-    delete  heta_rdphi1;
+    delete  eta_dphi1;
+    delete  eta_rdphi1;
 
-    delete  heta_phir;
-    delete  heta_etar;
+    delete  eta_phir;
+    delete  eta_etar;
 
-    delete heta_dphiPt1;
-    delete heta_rdphiPt1;
+    delete eta_dphiPt1;
+    delete eta_rdphiPt1;
 
-    delete heta_Pt1;
+    delete eta_Pt1;
     delete hpt_dphiA1;
     delete hpt_rdphiA1;
   }
 
   void Fill9b(double ptxdphi1, double dphi, double eta, double pt)
   {
-     heta_dphiPt1->Fill(eta,ptxdphi1);
-     heta_dphi1->Fill(eta,dphi);
+     eta_dphiPt1->Fill(eta,ptxdphi1);
+     eta_dphi1->Fill(eta,dphi);
      hpt_dphiA1->Fill(pt,dphi);
   }
   void Fill9c(double ptxrdphi1, double rdphi, double phir, double etar, double reta, double pt) 
   {
-     heta_rdphiPt1->Fill(reta,ptxrdphi1);
-     heta_rdphi1->Fill(reta,rdphi);
+     eta_rdphiPt1->Fill(reta,ptxrdphi1);
+     eta_rdphi1->Fill(reta,rdphi);
 
-     heta_phir->Fill(reta,phir);
-     heta_etar->Fill(reta,etar);
+     eta_phir->Fill(reta,phir);
+     eta_etar->Fill(reta,etar);
      hpt_rdphiA1->Fill(pt,rdphi);
-     heta_Pt1->Fill(reta,pt);
+     eta_Pt1->Fill(reta,pt);
   }
 
   void Write() {
 
-       heta_dphi1->Write();
-       heta_rdphi1->Write();
+       eta_dphi1->Write();
+       eta_rdphi1->Write();
 
-       heta_phir->Write();
-       heta_etar->Write();
+       eta_phir->Write();
+       eta_etar->Write();
 
-       heta_dphiPt1->Write();
-       heta_rdphiPt1->Write();
+       eta_dphiPt1->Write();
+       eta_rdphiPt1->Write();
 
        hpt_dphiA1->Write();
        hpt_rdphiA1->Write();
-       heta_Pt1->Write();
+       eta_Pt1->Write();
   }
 
-  TH2F *heta_dphi1;
-  TH2F *heta_rdphi1;
+  TH2F *eta_dphi1;
+  TH2F *eta_rdphi1;
  
-  TH2F *heta_phir;
-  TH2F *heta_etar;
+  TH2F *eta_phir;
+  TH2F *eta_etar;
 
-  TH2F *heta_dphiPt1;
-  TH2F *heta_rdphiPt1;
+  TH2F *eta_dphiPt1;
+  TH2F *eta_rdphiPt1;
 
   TH2F *hpt_dphiA1;
   TH2F *hpt_rdphiA1;
-  TH2F *heta_Pt1;
+  TH2F *eta_Pt1;
 
   TString name;
 };
@@ -1269,33 +1219,33 @@ public:
     TString N10 = name_.c_str();
     name=N10;
 
-    heta_dphiA  = new TH2F(N10+"_heta_dphiA", "eta vs dphi @MB", 100, 0.5, 1.5, 200, -0.08, 0.08);
-    heta_rdphiA = new TH2F(N10+"_heta_rdphiA", "eta vs rdphi @MB", 100, 0.5, 1.5, 200, -0.08, 0.08);
-    heta_detaA  = new TH2F(N10+"_heta_detaA", "eta vs deta  @MB", 100, 0.5, 1.5, 101, -0.01, 0.01);
-    heta_rdetaA  = new TH2F(N10+"_heta_rdetaA", "eta vs rdeta  @MB", 100, 0.5, 1.5, 101, -0.01, 0.01);
+    eta_dphiA  = new TH2F(N10+"_eta_dphiA", "eta vs dphi @OL", 50, 0.8,1.3, 200, -0.08, 0.08);
+    eta_rdphiA = new TH2F(N10+"_eta_rdphiA", "eta vs rdphi @OL", 50, 0.8,1.3, 200, -0.08, 0.08);
+    eta_detaA  = new TH2F(N10+"_eta_detaA", "eta vs deta  @OL", 50, 0.8,1.3, 101, -0.01, 0.01);
+    eta_rdetaA  = new TH2F(N10+"_eta_rdetaA", "eta vs rdeta  @OL", 50, 0.8,1.3, 101, -0.01, 0.01);
 
-    heta_dphiPtA  = new TH2F(N10+"_heta_dphiPtA", "eta vs dphi*Pt @MB", 100, 0.5, 1.5, 200, -1.0, 1.0);
-    heta_rdphiPtA = new TH2F(N10+"_heta_rdphiPtA", "eta vs rdphi*Pt @MB", 100, 0.5, 1.5, 200, -1.0, 1.0);
+    eta_dphiPtA  = new TH2F(N10+"_eta_dphiPtA", "eta vs dphi*Pt @OL", 50, 0.8,1.3, 200, -1.0, 1.0);
+    eta_rdphiPtA = new TH2F(N10+"_eta_rdphiPtA", "eta vs rdphi*Pt @OL", 50, 0.8,1.3, 200, -1.0, 1.0);
 
-    heta_Pt    = new TH2F(N10+"_heta_Pt", "eta vs Pt @MB", 100, 0.5, 1.5, 50, 5.0, 205.0);
-    heta_dphir = new TH2F(N10+"_heta_dphir", "eta vs dphi resolution @MB", 100, 0.5, 1.5, 101, -0.0005, 0.0005);
-    hpt_dphiA  = new TH2F(N10+"_hpt_dphiA", "pt vs dphi @MB", 50, 5., 205.0, 200, 0.0, 0.1);
-    hpt_rdphiA = new TH2F(N10+"_hpt_rdphiA", "pt vs rdphi @MB", 50, 5., 205.0, 200, 0.0, 0.1);
+    eta_Pt    = new TH2F(N10+"_eta_Pt", "eta vs Pt @OL", 50, 0.8,1.3, 50, 5.0, 205.0);
+    eta_dphir = new TH2F(N10+"_eta_dphir", "eta vs dphi resolution @OL", 50, 0.8,1.3, 101, -0.0005, 0.0005);
+    hpt_dphiA  = new TH2F(N10+"_hpt_dphiA", "pt vs dphi @OL", 50, 5., 205.0, 200, 0.0, 0.1);
+    hpt_rdphiA = new TH2F(N10+"_hpt_rdphiA", "pt vs rdphi @OL", 50, 5., 205.0, 200, 0.0, 0.1);
   }
 
  H2DRecHit10(TString name_, TFile* file) {
     name=name_;
 
-    heta_dphiA = (TH2F *) file->Get(name+"_heta_dphiA");
-    heta_rdphiA = (TH2F *) file->Get(name+"_heta_rdphiA");
-    heta_detaA = (TH2F *) file->Get(name+"_heta_detaA");
-    heta_rdetaA = (TH2F *) file->Get(name+"_heta_rdetaA");
+    eta_dphiA = (TH2F *) file->Get(name+"_eta_dphiA");
+    eta_rdphiA = (TH2F *) file->Get(name+"_eta_rdphiA");
+    eta_detaA = (TH2F *) file->Get(name+"_eta_detaA");
+    eta_rdetaA = (TH2F *) file->Get(name+"_eta_rdetaA");
 
-    heta_dphiPtA = (TH2F *) file->Get(name+"_heta_dphiPtA");
-    heta_rdphiPtA = (TH2F *) file->Get(name+"_heta_rdphiPtA");
+    eta_dphiPtA = (TH2F *) file->Get(name+"_eta_dphiPtA");
+    eta_rdphiPtA = (TH2F *) file->Get(name+"_eta_rdphiPtA");
 
-    heta_Pt    = (TH2F *) file->Get(name+"_heta_Pt");
-    heta_dphir = (TH2F *) file->Get(name+"_heta_dphir");
+    eta_Pt    = (TH2F *) file->Get(name+"_eta_Pt");
+    eta_dphir = (TH2F *) file->Get(name+"_eta_dphir");
     hpt_dphiA  = (TH2F *) file->Get(name+"_hpt_dphiA");
     hpt_rdphiA = (TH2F *) file->Get(name+"_hpt_rdphiA");
   } 
@@ -1303,65 +1253,65 @@ public:
   /// Destructor
   virtual ~H2DRecHit10() {
 
-    delete heta_dphiA;
-    delete heta_rdphiA;
-    delete heta_detaA;
-    delete heta_rdetaA;
+    delete eta_dphiA;
+    delete eta_rdphiA;
+    delete eta_detaA;
+    delete eta_rdetaA;
 
-    delete heta_dphiPtA;
-    delete heta_rdphiPtA;
+    delete eta_dphiPtA;
+    delete eta_rdphiPtA;
 
-    delete heta_Pt;
-    delete heta_dphir;
+    delete eta_Pt;
+    delete eta_dphir;
     delete hpt_dphiA;
     delete hpt_rdphiA;
   }
 
   void Fill12(double ptxdphi,double dphi, double deta, double eta, double pt)
   {
-     heta_dphiA->Fill(eta,dphi);
-     heta_detaA->Fill(eta,deta);
-     heta_dphiPtA->Fill(eta,ptxdphi);
+     eta_dphiA->Fill(eta,dphi);
+     eta_detaA->Fill(eta,deta);
+     eta_dphiPtA->Fill(eta,ptxdphi);
      hpt_dphiA->Fill(pt,dphi);
   }
   void Fill12a(double ptxrdphi, double rdphi, double rdeta, double reta, double pt, double dphir)
   {
-     heta_rdphiA->Fill(reta,rdphi);
-     heta_rdetaA->Fill(reta,rdeta);
-     heta_rdphiPtA->Fill(reta,ptxrdphi);
+     eta_rdphiA->Fill(reta,rdphi);
+     eta_rdetaA->Fill(reta,rdeta);
+     eta_rdphiPtA->Fill(reta,ptxrdphi);
      hpt_rdphiA->Fill(pt,rdphi);
-     heta_Pt->Fill(reta,pt);
-     heta_dphir->Fill(reta,dphir);
+     eta_Pt->Fill(reta,pt);
+     eta_dphir->Fill(reta,dphir);
   }
 
   void Write() {
 
-       heta_dphiA->Write();
-       heta_rdphiA->Write();
-       heta_detaA->Write();
-       heta_rdetaA->Write();
+       eta_dphiA->Write();
+       eta_rdphiA->Write();
+       eta_detaA->Write();
+       eta_rdetaA->Write();
 
-       heta_dphiPtA->Write();
-       heta_rdphiPtA->Write();
+       eta_dphiPtA->Write();
+       eta_rdphiPtA->Write();
 
        hpt_dphiA->Write();
        hpt_rdphiA->Write();
-       heta_Pt->Write();
-       heta_dphir->Write();
+       eta_Pt->Write();
+       eta_dphir->Write();
   }
 
-  TH2F *heta_dphiA;
-  TH2F *heta_rdphiA;
-  TH2F *heta_detaA;
-  TH2F *heta_rdetaA;
+  TH2F *eta_dphiA;
+  TH2F *eta_rdphiA;
+  TH2F *eta_detaA;
+  TH2F *eta_rdetaA;
 
-  TH2F *heta_dphiPtA;
-  TH2F *heta_rdphiPtA;
+  TH2F *eta_dphiPtA;
+  TH2F *eta_rdphiPtA;
 
   TH2F *hpt_dphiA;
   TH2F *hpt_rdphiA;
-  TH2F *heta_Pt;
-  TH2F *heta_dphir;
+  TH2F *eta_Pt;
+  TH2F *eta_dphir;
 
   TString name;
 };
