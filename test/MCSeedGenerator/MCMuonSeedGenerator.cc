@@ -1,5 +1,5 @@
 // Class Header
-#include "RecoMuon/MuonSeedGenerator/test/MCSeedGenerator/MCSeedGenerator.h"
+#include "RecoMuon/MuonSeedGenerator/test/MCSeedGenerator/MCMuonSeedGenerator.h"
 
 // Data Formats 
 #include "DataFormats/TrajectorySeed/interface/TrajectorySeed.h"
@@ -27,13 +27,13 @@
 #include "RecoMuon/TrackingTools/interface/MuonServiceProxy.h"
 #include "RecoMuon/TrackingTools/interface/MuonPatternRecoDumper.h"
 
-DEFINE_FWK_MODULE(MCSeedGenerator);
+DEFINE_FWK_MODULE(MCMuonSeedGenerator);
 
 using namespace std;
 using namespace edm;
 
 // constructors
-MCSeedGenerator::MCSeedGenerator(const edm::ParameterSet& parameterSet){ 
+MCMuonSeedGenerator::MCMuonSeedGenerator(const edm::ParameterSet& parameterSet){ 
   
   theCSCSimHitLabel = parameterSet.getParameter<InputTag>("CSCSimHit");
   theDTSimHitLabel = parameterSet.getParameter<InputTag>("DTSimHit");
@@ -53,13 +53,13 @@ MCSeedGenerator::MCSeedGenerator(const edm::ParameterSet& parameterSet){
 }
 
 // destructor
-MCSeedGenerator::~MCSeedGenerator(){
+MCMuonSeedGenerator::~MCMuonSeedGenerator(){
   if (theService) delete theService;
 }
 
-void MCSeedGenerator::produce(edm::Event& event, const edm::EventSetup& setup)
+void MCMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& setup)
 {
-  const std::string metname = "Muon|RecoMuon|MCSeedGenerator";
+  const std::string metname = "Muon|RecoMuon|MCMuonSeedGenerator";
 
   auto_ptr<TrajectorySeedCollection> output(new TrajectorySeedCollection());
   
@@ -131,9 +131,9 @@ void MCSeedGenerator::produce(edm::Event& event, const edm::EventSetup& setup)
 
 
 
-TrajectorySeed* MCSeedGenerator::createSeed(const PSimHit* innerSimHit){
+TrajectorySeed* MCMuonSeedGenerator::createSeed(const PSimHit* innerSimHit){
   
-  const std::string metname = "Muon|RecoMuon|MCSeedGenerator";
+  const std::string metname = "Muon|RecoMuon|MCMuonSeedGenerator";
   MuonPatternRecoDumper debug;
 
 
