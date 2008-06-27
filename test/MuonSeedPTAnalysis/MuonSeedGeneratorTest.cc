@@ -1,8 +1,7 @@
 // Class Header
-#include "SeedGeneratorTest.h"
-#include "RecoMuon/SeedGenerator/test/MuonSeedPTAnalysis/SegSelector.h"
-#include "RecoMuon/SeedGenerator/test/MuonSeedPTAnalysis/MuonSeedBuilder.h"
-#include "RecoMuon/SeedGenerator/test/MuonSeedPTAnalysis/SeedBuilder.h"
+#include "MuonSeedGeneratorTest.h"
+#include "RecoMuon/MuonSeedGenerator/test/MuonSeedPTAnalysis/SegSelector.h"
+#include "RecoMuon/MuonSeedGenerator/test/MuonSeedPTAnalysis/MuonSeedBuilder.h"
 
 // for MuonSeedBuilder
 #include "RecoMuon/DetLayers/interface/MuonDetLayerGeometry.h"
@@ -33,12 +32,12 @@
 #include <algorithm>
 
 
-DEFINE_FWK_MODULE(SeedGeneratorTest);
+DEFINE_FWK_MODULE(MuonSeedGeneratorTest);
 using namespace std;
 using namespace edm;
 
 // constructors
-SeedGeneratorTest::SeedGeneratorTest(const ParameterSet& pset){ 
+MuonSeedGeneratorTest::MuonSeedGeneratorTest(const ParameterSet& pset){ 
 
   debug             = pset.getUntrackedParameter<bool>("debug");
   rootFileName      = pset.getUntrackedParameter<string>("rootFileName");
@@ -145,7 +144,7 @@ SeedGeneratorTest::SeedGeneratorTest(const ParameterSet& pset){
 }
 
 // destructor
-SeedGeneratorTest::~SeedGeneratorTest(){
+MuonSeedGeneratorTest::~MuonSeedGeneratorTest(){
 
   if (debug) cout << "[SeedQualityAnalysis] Destructor called" << endl;
   delete recsegSelector;
@@ -228,7 +227,7 @@ SeedGeneratorTest::~SeedGeneratorTest(){
 
 // The Main...Aanlysis...
 
-void SeedGeneratorTest::analyze(const Event& event, const EventSetup& eventSetup)
+void MuonSeedGeneratorTest::analyze(const Event& event, const EventSetup& eventSetup)
 {
   //Get the CSC Geometry :
   ESHandle<CSCGeometry> cscGeom;
@@ -1210,7 +1209,7 @@ void SeedGeneratorTest::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg )
 }
 
 // find the simHits which is corresponding to the segment
-bool SeedGeneratorTest::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
+bool MuonSeedGeneratorTest::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
   
      if ( SimDetId.endcap()== SegDetId.endcap() && SimDetId.station()== SegDetId.station() &&
           SimDetId.ring()  == SegDetId.ring()   && SimDetId.chamber()== SegDetId.chamber() ){
@@ -1223,7 +1222,7 @@ bool SeedGeneratorTest::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
 }
 
 
-void SeedGeneratorTest::SeedFromCSCRecHit(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom){
+void MuonSeedGeneratorTest::SeedFromCSCRecHit(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom){
      for (int i=0; i <6; i++) {
          cscrh_sum[i]=0;
      }
@@ -1244,7 +1243,7 @@ void SeedGeneratorTest::SeedFromCSCRecHit(Handle<CSCRecHit2DCollection> cscrechi
      }
 }
 
-void SeedGeneratorTest::SeedFromDTRecHit(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom){
+void MuonSeedGeneratorTest::SeedFromDTRecHit(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom){
 
      //double phi[4]={999.0};
      for (int i=0; i <6; i++) {
@@ -1290,7 +1289,7 @@ void SeedGeneratorTest::SeedFromDTRecHit(Handle<DTRecHitCollection> dtrechit, ES
          }
      }
 }
-void SeedGeneratorTest::Eta_Test(Handle<edm::SimTrackContainer> simTracks,
+void MuonSeedGeneratorTest::Eta_Test(Handle<edm::SimTrackContainer> simTracks,
                                  Handle<edm::PSimHitContainer> dsimHits,
                                  ESHandle<DTGeometry> dtGeom) {
 
@@ -1337,7 +1336,7 @@ void SeedGeneratorTest::Eta_Test(Handle<edm::SimTrackContainer> simTracks,
 
 }
 
-int SeedGeneratorTest::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
+int MuonSeedGeneratorTest::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
      int charge = 0;
      float axb = ( Va.x()*Vb.y() ) - ( Vb.x()*Va.y() );
      if (axb != 0.0) {
@@ -1346,7 +1345,7 @@ int SeedGeneratorTest::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
      return charge;
 }
 
-void SeedGeneratorTest::RecSeedReader( Handle<TrajectorySeedCollection> rec_seeds, ESHandle<DTGeometry> dtGeom, ESHandle<CSCGeometry> cscGeom){
+void MuonSeedGeneratorTest::RecSeedReader( Handle<TrajectorySeedCollection> rec_seeds, ESHandle<DTGeometry> dtGeom, ESHandle<CSCGeometry> cscGeom){
 
      TrajectorySeedCollection::const_iterator seed_it;
      for (seed_it = rec_seeds->begin(); seed_it !=  rec_seeds->end(); seed_it++) {

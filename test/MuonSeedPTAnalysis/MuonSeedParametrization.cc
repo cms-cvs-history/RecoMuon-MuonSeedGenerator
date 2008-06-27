@@ -1,5 +1,5 @@
 // Class Header
-#include "SeedParametrization.h"
+#include "MuonSeedParametrization.h"
 #include "SegSelector.h"
 
 // for MuonSeedBuilder
@@ -33,12 +33,12 @@
 #include <algorithm>
 
 
-DEFINE_FWK_MODULE(SeedParametrization);
+DEFINE_FWK_MODULE(MuonSeedParametrization);
 using namespace std;
 using namespace edm;
 
 // constructors
-SeedParametrization::SeedParametrization(const ParameterSet& pset){ 
+MuonSeedParametrization::MuonSeedParametrization(const ParameterSet& pset){ 
 
   debug             = pset.getUntrackedParameter<bool>("debug");
   rootFileName      = pset.getUntrackedParameter<string>("rootFileName");
@@ -128,7 +128,7 @@ SeedParametrization::SeedParametrization(const ParameterSet& pset){
 }
 
 // destructor
-SeedParametrization::~SeedParametrization(){
+MuonSeedParametrization::~MuonSeedParametrization(){
 
   if (debug) cout << "[SeedQualityAnalysis] Destructor called" << endl;
   delete recsegSelector;
@@ -202,7 +202,7 @@ SeedParametrization::~SeedParametrization(){
 
 // The Main...Aanlysis...
 
-void SeedParametrization::analyze(const Event& event, const EventSetup& eventSetup)
+void MuonSeedParametrization::analyze(const Event& event, const EventSetup& eventSetup)
 {
   //Get the CSC Geometry :
   ESHandle<CSCGeometry> cscGeom;
@@ -578,7 +578,7 @@ void SeedParametrization::analyze(const Event& event, const EventSetup& eventSet
 // cscseg_stat[i] = the number of segments in station i
 // cscseg_stat[5] = the number of stations which have segments
 // cscseg_stat1 is the statistic for segments w/ more than 4 rechits
-void SeedParametrization::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg ) {
+void MuonSeedParametrization::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg ) {
 
      for (int i=0; i<6; i++) {
          cscseg_stat[i]=0;
@@ -605,7 +605,7 @@ void SeedParametrization::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg )
      
 }
 // the same as CSCsegment_stat
-void SeedParametrization::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg ) {
+void MuonSeedParametrization::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg ) {
 
      for (int i=0; i<6; i++) {
          dtseg_stat[i]=0;
@@ -645,7 +645,7 @@ void SeedParametrization::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg
 
 }
 // number rechit in each station, basically only for those station cannot form a segment
-void SeedParametrization::CSCRecHit_stat(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom){
+void MuonSeedParametrization::CSCRecHit_stat(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom){
      for (int i=0; i <6; i++) {
          cscrh_sum[i]=0;
      }
@@ -666,7 +666,7 @@ void SeedParametrization::CSCRecHit_stat(Handle<CSCRecHit2DCollection> cscrechit
      }
 }
 
-void SeedParametrization::DTRecHit_stat(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom){
+void MuonSeedParametrization::DTRecHit_stat(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom){
 
      //double phi[4]={999.0};
      for (int i=0; i <6; i++) {
@@ -695,7 +695,7 @@ void SeedParametrization::DTRecHit_stat(Handle<DTRecHitCollection> dtrechit, ESH
 }
 
 // find the simHits which is corresponding to the segment
-bool SeedParametrization::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
+bool MuonSeedParametrization::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
   
      if ( SimDetId.endcap()== SegDetId.endcap() && SimDetId.station()== SegDetId.station() &&
           SimDetId.ring()  == SegDetId.ring()   && SimDetId.chamber()== SegDetId.chamber() ){
@@ -707,7 +707,7 @@ bool SeedParametrization::SameChamber(CSCDetId SimDetId, CSCDetId SegDetId){
 
 }
 
-void SeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
+void MuonSeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
                             Handle<edm::PSimHitContainer> dsimHits, Handle<edm::PSimHitContainer> csimHits,
                             ESHandle<DTGeometry> dtGeom, ESHandle<CSCGeometry> cscGeom){
 
@@ -797,7 +797,7 @@ void SeedParametrization::SimInfo(Handle<edm::SimTrackContainer> simTracks,
 }
 
 // Fill the phi and eta information for CSC
-void SeedParametrization::FromCSCSeg( std::vector<CSCSegment> cscSeg, ESHandle<CSCGeometry> cscGeom,
+void MuonSeedParametrization::FromCSCSeg( std::vector<CSCSegment> cscSeg, ESHandle<CSCGeometry> cscGeom,
                                            std::vector<SimSegment> seg) {
      
      /// get the global dphi from recHits for CSC
@@ -880,7 +880,7 @@ void SeedParametrization::FromCSCSeg( std::vector<CSCSegment> cscSeg, ESHandle<C
 }
 
 // Fill the phi and eta information for DT
-void SeedParametrization::FromDTSeg( std::vector<DTRecSegment4D> dtSeg, ESHandle<DTGeometry> dtGeom,
+void MuonSeedParametrization::FromDTSeg( std::vector<DTRecSegment4D> dtSeg, ESHandle<DTGeometry> dtGeom,
                                           std::vector<SimSegment> seg) {
      
      /// get the global dphi from recHits for DT
@@ -952,7 +952,7 @@ void SeedParametrization::FromDTSeg( std::vector<DTRecSegment4D> dtSeg, ESHandle
      }
 }
 
-void SeedParametrization::FromOverlap() {
+void MuonSeedParametrization::FromOverlap() {
  
      for (int l=0; l<10; l++) {
         int i = l/2;
@@ -979,7 +979,7 @@ void SeedParametrization::FromOverlap() {
 
 }
      
-void SeedParametrization::FromCSCSingleSeg( std::vector<CSCSegment> cscSeg, ESHandle<CSCGeometry> cscGeom,
+void MuonSeedParametrization::FromCSCSingleSeg( std::vector<CSCSegment> cscSeg, ESHandle<CSCGeometry> cscGeom,
                                            std::vector<SimSegment> seg) {
 
   for (int i=0; i<2; i++) {
@@ -1041,7 +1041,7 @@ void SeedParametrization::FromCSCSingleSeg( std::vector<CSCSegment> cscSeg, ESHa
   }
 }
 
-void SeedParametrization::FromDTSingleSeg( std::vector<DTRecSegment4D> dtSeg, ESHandle<DTGeometry> dtGeom,
+void MuonSeedParametrization::FromDTSingleSeg( std::vector<DTRecSegment4D> dtSeg, ESHandle<DTGeometry> dtGeom,
                                           std::vector<SimSegment> seg) {
 
   for (int i=0; i<2; i++) {

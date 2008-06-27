@@ -1,7 +1,7 @@
-#ifndef RecoMuon_SeedValidatorNtuple_H
-#define RecoMuon_SeedValidatorNtuple_H
+#ifndef RecoMuon_MuonSeedGeneratorNtuple_H
+#define RecoMuon_MuonSeedGeneratorNtuple_H
 
-/** \class SeedValidatorNtuple
+/** \class SeedGeneratorNtuple
  *  Collection of Ntuples for SeedGenerator test.
  *
  * Author: S.C. Kao  - UC Riverside

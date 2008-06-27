@@ -1,5 +1,5 @@
-#ifndef RecoMuon_SeedValidator_H
-#define RecoMuon_SeedValidator_H
+#ifndef RecoMuon_MuonSeedValidator_H
+#define RecoMuon_MuonSeedValidator_H
 
 /** \class SeedValidator
  *
@@ -7,8 +7,8 @@
  */
 
 //#include "RecoMuon/SeedGenerator/test/MuonSeedPTAnalysis/SegSelector.h"
-#include "SeedValidatorHisto.h"
-#include "SeedValidatorNtuple.h"
+#include "MuonSeedValidatorHisto.h"
+#include "MuonSeedValidatorNtuple.h"
 #include "SegSelector.h"
 
 #include "FWCore/Framework/interface/EDAnalyzer.h"
@@ -73,14 +73,14 @@ class DTChamberId;
 class SegSelector;
 //class MuonSeedBuilder;
 
-class SeedValidator : public edm::EDAnalyzer {
+class MuonSeedValidator : public edm::EDAnalyzer {
 public:
 
   /// Constructor
-  SeedValidator(const edm::ParameterSet& pset);
+  MuonSeedValidator(const edm::ParameterSet& pset);
 
   /// Destructor
-  virtual ~SeedValidator();
+  virtual ~MuonSeedValidator();
 
   // Operations
   /// Perform the real analysis

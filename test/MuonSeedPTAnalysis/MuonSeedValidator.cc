@@ -1,5 +1,5 @@
 // Class Header
-#include "SeedValidator.h"
+#include "MuonSeedValidator.h"
 #include "SegSelector.h"
 
 // for MuonSeedBuilder
@@ -32,14 +32,14 @@
 #include <stdio.h>
 #include <algorithm>
 
-DEFINE_FWK_MODULE(SeedValidator);
+DEFINE_FWK_MODULE(MuonSeedValidator);
 using namespace std;
 using namespace edm;
 using namespace reco;
 
 
 // constructors
-SeedValidator::SeedValidator(const ParameterSet& pset){ 
+MuonSeedValidator::MuonSeedValidator(const ParameterSet& pset){ 
 
   rootFileName      = pset.getUntrackedParameter<string>("rootFileName");
   recHitLabel       = pset.getUntrackedParameter<string>("recHitLabel");
@@ -89,7 +89,7 @@ SeedValidator::SeedValidator(const ParameterSet& pset){
 }
 
 // destructor
-SeedValidator::~SeedValidator(){
+MuonSeedValidator::~MuonSeedValidator(){
 
   if (debug) cout << "[Seed Validation] Destructor called" << endl;
   delete recsegSelector;
@@ -134,7 +134,7 @@ SeedValidator::~SeedValidator(){
 
 // The Main...Aanlysis...
 
-void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
+void MuonSeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
 {
   //Get the CSC Geometry :
   theService->update(eventSetup);
@@ -591,7 +591,7 @@ void SeedValidator::analyze(const Event& event, const EventSetup& eventSetup)
 // number of csc segments in one chamber for each station
 // cscseg_stat[0] = total segments in all stations
 // cscseg_stat[5] = the number of stations which have segments
-void SeedValidator::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg , ESHandle<CSCGeometry> cscGeom, double trkTheta, double trkPhi) {
+void MuonSeedValidator::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg , ESHandle<CSCGeometry> cscGeom, double trkTheta, double trkPhi) {
 
      for (int i=0; i<6; i++) {
          cscseg_stat[i]=0;
@@ -619,7 +619,7 @@ void SeedValidator::CSCsegment_stat( Handle<CSCSegmentCollection> cscSeg , ESHan
      
 }
 // number of dt segments in one chamber for each station
-void SeedValidator::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg, ESHandle<DTGeometry> dtGeom, double trkTheta, double trkPhi)  {
+void MuonSeedValidator::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg, ESHandle<DTGeometry> dtGeom, double trkTheta, double trkPhi)  {
 
      for (int i=0; i<6; i++) {
          dtseg_stat[i]=0;
@@ -653,7 +653,7 @@ void SeedValidator::DTsegment_stat( Handle<DTRecSegment4DCollection> dtSeg, ESHa
 }
 
 // number of sim segments in one chamber for each station
-void SeedValidator::Simsegment_stat( std::vector<SimSegment> sCSC, std::vector<SimSegment> sDT ) {
+void MuonSeedValidator::Simsegment_stat( std::vector<SimSegment> sCSC, std::vector<SimSegment> sDT ) {
 
      for (int i=0; i<6; i++) {
          simcscseg[i] = 0;
@@ -695,7 +695,7 @@ void SeedValidator::Simsegment_stat( std::vector<SimSegment> sCSC, std::vector<S
      else { simseg_eta = (eta_sim1 + eta_sim2)/2.0 ; }
 }
 
-void SeedValidator::CSCRecHit_Stat(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom, double trkEta, double trkPhi){
+void MuonSeedValidator::CSCRecHit_Stat(Handle<CSCRecHit2DCollection> cscrechit, ESHandle<CSCGeometry> cscGeom, double trkEta, double trkPhi){
      for (int i=0; i <6; i++) {
          cscrh_sum[i]=0;
      }
@@ -716,7 +716,7 @@ void SeedValidator::CSCRecHit_Stat(Handle<CSCRecHit2DCollection> cscrechit, ESHa
      }
 }
 
-void SeedValidator::DTRecHit_Stat(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom, double trkEta, double trkPhi){
+void MuonSeedValidator::DTRecHit_Stat(Handle<DTRecHitCollection> dtrechit, ESHandle<DTGeometry> dtGeom, double trkEta, double trkPhi){
 
      //double phi[4]={999.0};
      for (int i=0; i <6; i++) {
@@ -746,7 +746,7 @@ void SeedValidator::DTRecHit_Stat(Handle<DTRecHitCollection> dtrechit, ESHandle<
      }
 }
 
-int SeedValidator::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
+int MuonSeedValidator::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
      int charge = 0;
      float axb = ( Va.x()*Vb.y() ) - ( Vb.x()*Va.y() );
      if (axb != 0.0) {
@@ -755,7 +755,7 @@ int SeedValidator::ChargeAssignment(GlobalVector Va, GlobalVector Vb){
      return charge;
 }
 
-void SeedValidator::RecSeedReader( Handle<TrajectorySeedCollection> rec_seeds ){
+void MuonSeedValidator::RecSeedReader( Handle<TrajectorySeedCollection> rec_seeds ){
 
      nu_seed = 0;
      seed_gp.clear();
@@ -834,7 +834,7 @@ void SeedValidator::RecSeedReader( Handle<TrajectorySeedCollection> rec_seeds ){
 
  
 // read the segments associated with the seed and compare with seed
-void SeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, int seed_idx){
+void MuonSeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, int seed_idx){
  
      int idx = 0;
      d_h.clear();
@@ -875,7 +875,7 @@ void SeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, in
 }
 
 // read the segments associated with the seed and compare with sim-segment
-void SeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, int seed_idx,
+void MuonSeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, int seed_idx,
                                   std::vector<SimSegment> sCSC, std::vector<SimSegment> sDT ){
      int idx = 0;
      d_h.clear();
@@ -1005,7 +1005,7 @@ void SeedValidator::SegOfRecSeed( Handle<TrajectorySeedCollection> rec_seeds, in
      }
 }
 
-void SeedValidator::StaTrackReader( Handle<reco::TrackCollection> sta_trk, int sta_glb){
+void MuonSeedValidator::StaTrackReader( Handle<reco::TrackCollection> sta_trk, int sta_glb){
 
      // look at the inner most momentum and position
      nu_sta=0;
@@ -1058,7 +1058,7 @@ void SeedValidator::StaTrackReader( Handle<reco::TrackCollection> sta_trk, int s
 }
 
 
-void SeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
+void MuonSeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
                             Handle<edm::PSimHitContainer> dsimHits, Handle<edm::PSimHitContainer> csimHits,
                             ESHandle<DTGeometry> dtGeom, ESHandle<CSCGeometry> cscGeom){
 
@@ -1164,7 +1164,7 @@ void SeedValidator::SimInfo(Handle<edm::SimTrackContainer> simTracks,
 }
 
 // Look up what segments we have in a event
-int SeedValidator::RecSegReader( Handle<CSCSegmentCollection> cscSeg, Handle<DTRecSegment4DCollection> dtSeg                                , ESHandle<CSCGeometry> cscGeom, ESHandle<DTGeometry> dtGeom, double trkTheta, double trkPhi) {
+int MuonSeedValidator::RecSegReader( Handle<CSCSegmentCollection> cscSeg, Handle<DTRecSegment4DCollection> dtSeg                                , ESHandle<CSCGeometry> cscGeom, ESHandle<DTGeometry> dtGeom, double trkTheta, double trkPhi) {
 
      // Calculate the ave. eta & phi
      ave_phi = 0.0;
@@ -1254,7 +1254,7 @@ int SeedValidator::RecSegReader( Handle<CSCSegmentCollection> cscSeg, Handle<DTR
 
 }
 
-double SeedValidator::getEta(double vx, double vy, double vz ) {
+double MuonSeedValidator::getEta(double vx, double vy, double vz ) {
 
       double va = sqrt( vx*vx + vy*vy + vz*vz );
 
@@ -1262,7 +1262,7 @@ double SeedValidator::getEta(double vx, double vy, double vz ) {
       double eta = (-1.0)*log( tan(theta/2.0) )  ;
       return eta;
 }
-double SeedValidator::getEta(double theta ) {
+double MuonSeedValidator::getEta(double theta ) {
 
       double eta = (-1.0)*log( tan(theta/2.0) )  ;
       return eta;
