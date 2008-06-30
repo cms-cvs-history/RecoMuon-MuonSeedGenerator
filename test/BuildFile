@@ -10,14 +10,22 @@
 <use name=CLHEP>
 <use name=root>
 
+<<<<<<< BuildFile
+<library name=SeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedParametrization.cc>
+=======
 <library file=MCSeedGenerator/MCMuonSeedGenerator.cc name=MCMuonSeedGenerator>
    <flags EDM_PLUGIN=1>
 </library>
 
 <library name=MuonSeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedParametrization.cc>
+>>>>>>> 1.5
    <Flags EDM_PLUGIN=1>
 </library>
 
+<<<<<<< BuildFile
+<library name=SeedValidator file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedValidator.cc>
+=======
 <library name=MuonSeedValidator file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedValidator.cc>
+>>>>>>> 1.5
    <Flags EDM_PLUGIN=1>
 </library>
