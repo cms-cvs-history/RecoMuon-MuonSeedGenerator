@@ -3,9 +3,6 @@
 # Geometries
 include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cff"
 include "Geometry/CommonDetUnit/data/bareGlobalTrackingGeometry.cfi"
-include "Geometry/DTGeometry/data/dtGeometry.cfi"
-include "Geometry/CSCGeometry/data/cscGeometry.cfi"
-include "Geometry/RPCGeometry/data/rpcGeometry.cfi"
 include "RecoMuon/DetLayers/data/muonDetLayerGeometry.cfi"
 
 # Old stand alone muon seed producer used priod to 2-X-X
