@@ -6,7 +6,7 @@ include "Geometry/CommonDetUnit/data/bareGlobalTrackingGeometry.cfi"
 include "RecoMuon/DetLayers/data/muonDetLayerGeometry.cfi"
 
 # Old stand alone muon seed producer used priod to 2-X-X
-#include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cfi"
+include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeeds.cfi"
 
 # New standalone muon producer to be used in 2-X-X
-include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeedProducer.cfi"
+#include "RecoMuon/MuonSeedGenerator/data/standAloneMuonSeedProducer.cfi"
