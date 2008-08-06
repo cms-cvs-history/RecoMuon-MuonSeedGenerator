@@ -10,7 +10,7 @@
 <use name=CLHEP>
 <use name=root>
 
-<library file=MCSeedGenerator/MCMuonSeedGenerator.cc name=MCMuonSeedGenerator>
+<library file=MCSeedGenerator/MCMuonSeedGenerator.cc name=MCMuonSeedGenerator2>
    <flags EDM_PLUGIN=1>
 </library>
 
