@@ -9,11 +9,15 @@ from RecoMuon.MuonSeedGenerator.ptSeedParameterization_38T_cfi import *
 #include "RecoMuon/MuonSeedGenerator/data/ptSeedParameterization_40T.cfi"
 # module standAloneMuonSeeds = MuonSeedGenerator {
 MuonSeed = cms.EDFilter("MuonSeedGenerator",
-    CSCRecSegmentLabel = cms.InputTag("cscSegments"),
-    DTRecSegmentLabel = cms.InputTag("dt4DSegments"),
-    EnableDTMeasurement = cms.bool(True),
-    EnableCSCMeasurement = cms.bool(True)
-)
+                         ptSeedParameterization,
+                        CSCRecSegmentLabel = cms.InputTag("cscSegments"),
+                        DTRecSegmentLabel = cms.InputTag("dt4DSegments"),
+                        EnableDTMeasurement = cms.bool(True),
+                        EnableCSCMeasurement = cms.bool(True),
+                        # places where it's OK to have single-segment seeds
+                        crackEtas = cms.vdouble(0.2, 1.6, 1.7),
+                        crackWindow = cms.double(0.04)
+                        )
 
 
 
