@@ -1,14 +1,13 @@
 # The new seed generator to be used in 2-X-X is MuonSeedProducer
 # to Uncomment for using the new seed generator
 include "RecoMuon/TrackingTools/data/MuonServiceProxy.cff"
-include "RecoMuon/MuonSeedGenerator/data/ptSeedParameterization.cfi"
-include "RecoMuon/MuonSeedGenerator/data/MuonSeedPtScale.cfi"
+include "RecoMuon/MuonSeedGenerator/data/ptSeedParameterization_38T.cfi"
 
 module MuonSeed = MuonSeedProducer {
 
   using MuonServiceProxy
+
   using ptSeedParameterization
-  using dphiScale
 
   # enable the DT chamber
   bool EnableDTMeasurement    = true
