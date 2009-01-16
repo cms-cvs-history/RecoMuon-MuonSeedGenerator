@@ -2,8 +2,8 @@
 /**
  *  CosmicMuonSeedGenerator
  *
- *  $Date: 2008/09/20 21:24:12 $
- *  $Revision: 1.24 $
+ *  $Date: 2009/01/05 03:53:10 $
+ *  $Revision: 1.24.2.1 $
  *
  *  \author Chang Liu - Purdue University 
  *
@@ -125,16 +125,6 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
   vector<MuonRecHitContainer> RHMEFs;
   vector<MuonRecHitContainer> RHMEBs;
 
-  for (vector<DetLayer*>::reverse_iterator idtlayer = dtLayers.rbegin();
-       idtlayer != dtLayers.rend(); ++idtlayer) {
-
-       MuonRecHitContainer RHMB = muonMeasurements.recHits(*idtlayer);
-       RHMBs.push_back(RHMB);
-
-       allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
-
-  }
-
   stable_sort(allHits.begin(),allHits.end(),DecreasingGlobalY());
 
   for (vector<DetLayer*>::reverse_iterator icsclayer = cscForwardLayers.rbegin();
@@ -152,6 +142,18 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
        allHits.insert(allHits.end(),RHMF.begin(),RHMF.end());
 
   }
+
+  for (vector<DetLayer*>::reverse_iterator idtlayer = dtLayers.rbegin();
+       idtlayer != dtLayers.rend(); ++idtlayer) {
+
+       MuonRecHitContainer RHMB = muonMeasurements.recHits(*idtlayer);
+       RHMBs.push_back(RHMB);
+
+       allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
+
+  }
+
+//  stable_sort(allHits.begin(),allHits.end(),DecreasingGlobalY());
 
   LogTrace(category)<<"all RecHits: "<<allHits.size();
 
@@ -176,6 +178,7 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
   if ( !allHits.empty() ) {
 
     MuonRecHitContainer goodhits = selectSegments(allHits);
+    theMaxSeeds = seeds.size() + 10; // reset max seeds for the second option
     LogTrace(category)<<"good RecHits: "<<goodhits.size();
 
     if ( goodhits.empty() ) {
