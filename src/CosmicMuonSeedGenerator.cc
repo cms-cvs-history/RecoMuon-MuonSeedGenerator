@@ -2,8 +2,8 @@
 /**
  *  CosmicMuonSeedGenerator
  *
- *  $Date: 2009/01/05 03:53:10 $
- *  $Revision: 1.24.2.1 $
+ *  $Date: 2009/01/16 01:07:00 $
+ *  $Revision: 1.24.2.2 $
  *
  *  \author Chang Liu - Purdue University 
  *
@@ -128,15 +128,15 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
   stable_sort(allHits.begin(),allHits.end(),DecreasingGlobalY());
 
   for (vector<DetLayer*>::reverse_iterator icsclayer = cscForwardLayers.rbegin();
-       icsclayer != cscForwardLayers.rend(); ++icsclayer) {
-
+       icsclayer != cscForwardLayers.rend() - 1; ++icsclayer) {
+       
        MuonRecHitContainer RHMF = muonMeasurements.recHits(*icsclayer);
        allHits.insert(allHits.end(),RHMF.begin(),RHMF.end());
 
   }
 
   for (vector<DetLayer*>::reverse_iterator icsclayer = cscBackwardLayers.rbegin();
-       icsclayer != cscBackwardLayers.rend(); ++icsclayer) {
+       icsclayer != cscBackwardLayers.rend() - 1; ++icsclayer) {
 
        MuonRecHitContainer RHMF = muonMeasurements.recHits(*icsclayer);
        allHits.insert(allHits.end(),RHMF.begin(),RHMF.end());
@@ -149,7 +149,7 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
        MuonRecHitContainer RHMB = muonMeasurements.recHits(*idtlayer);
        RHMBs.push_back(RHMB);
 
-       allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
+//       allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
 
   }
 
@@ -465,6 +465,7 @@ std::vector<TrajectorySeed> CosmicMuonSeedGenerator::createSeed(const CosmicMuon
   if (fabs(dphi) > 1e-5) {
     pt = paraC/fabs(dphi); 
   }
+  if (pt < 7.0 ) pt = 7.0;
 
   AlgebraicVector t(4);
   AlgebraicSymMatrix mat(5,0) ;
