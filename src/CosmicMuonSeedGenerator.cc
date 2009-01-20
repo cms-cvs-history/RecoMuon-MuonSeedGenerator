@@ -2,8 +2,8 @@
 /**
  *  CosmicMuonSeedGenerator
  *
- *  $Date: 2009/01/16 01:07:00 $
- *  $Revision: 1.24.2.2 $
+ *  $Date: 2009/01/19 13:33:32 $
+ *  $Revision: 1.24.2.3 $
  *
  *  \author Chang Liu - Purdue University 
  *
@@ -149,7 +149,7 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
        MuonRecHitContainer RHMB = muonMeasurements.recHits(*idtlayer);
        RHMBs.push_back(RHMB);
 
-//       allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
+       if ( idtlayer != dtLayers.rbegin() ) allHits.insert(allHits.end(),RHMB.begin(),RHMB.end());
 
   }
 
@@ -157,8 +157,8 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
 
   LogTrace(category)<<"all RecHits: "<<allHits.size();
 
-  CosmicMuonSeedGenerator::MuonRecHitPairVector mb41 = makeSegPairs(RHMBs[0], RHMBs[3], "mb41");
-  createSeeds(seeds, mb41, eSetup);
+//  CosmicMuonSeedGenerator::MuonRecHitPairVector mb41 = makeSegPairs(RHMBs[0], RHMBs[3], "mb41");
+//  createSeeds(seeds, mb41, eSetup);
 
 //  CosmicMuonSeedGenerator::MuonRecHitPairVector mb43 = makeSegPairs(RHMBs[0],RHMBs[1], "mb43");
 //  createSeeds(seeds, mb43, eSetup);
@@ -178,7 +178,7 @@ void CosmicMuonSeedGenerator::produce(edm::Event& event, const edm::EventSetup& 
   if ( !allHits.empty() ) {
 
     MuonRecHitContainer goodhits = selectSegments(allHits);
-    theMaxSeeds = seeds.size() + 10; // reset max seeds for the second option
+    theMaxSeeds += seeds.size(); // reset max seeds for the second option
     LogTrace(category)<<"good RecHits: "<<goodhits.size();
 
     if ( goodhits.empty() ) {
@@ -465,7 +465,8 @@ std::vector<TrajectorySeed> CosmicMuonSeedGenerator::createSeed(const CosmicMuon
   if (fabs(dphi) > 1e-5) {
     pt = paraC/fabs(dphi); 
   }
-  if (pt < 7.0 ) pt = 7.0;
+
+  if (pt < 10.0 ) { return result; } //still use the old strategy for low pt
 
   AlgebraicVector t(4);
   AlgebraicSymMatrix mat(5,0) ;
@@ -496,6 +497,7 @@ std::vector<TrajectorySeed> CosmicMuonSeedGenerator::createSeed(const CosmicMuon
   mat = hit->parametersError().similarityT( hit->projectionMatrix() );
   
   float p_err = 0.004/paraC;
+  if (pt < 10.01) p_err = 0.1; 
   mat[0][0]= p_err;
   
   LocalTrajectoryError error(mat);
