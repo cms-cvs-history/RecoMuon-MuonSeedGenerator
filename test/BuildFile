@@ -14,7 +14,7 @@
    <flags EDM_PLUGIN=1>
 </library>
 
-<library name=MuonSeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedParametrization.cc>
+<library name=MuonSeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedParaFillHisto.cc,MuonSeedPTAnalysis/MuonSeeddPhiScale.cc,MuonSeedPTAnalysis/MuonSeedParametrization.cc>
    <Flags EDM_PLUGIN=1>
 </library>
 
