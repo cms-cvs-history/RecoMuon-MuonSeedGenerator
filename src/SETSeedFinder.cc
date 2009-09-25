@@ -10,6 +10,7 @@
 #include "TrackingTools/DetLayers/interface/DetLayer.h"
 #include "Geometry/CommonDetUnit/interface/GeomDet.h"
 #include "DataFormats/MuonDetId/interface/MuonSubdetId.h"
+#include "DataFormats/MuonDetId/interface/CSCDetId.h"
 #include "TrackingTools/TrajectoryState/interface/TrajectoryStateTransform.h"
 
 #include "TMath.h"
@@ -53,7 +54,7 @@ struct sorter{
 std::vector<SETSeedFinder::MuonRecHitContainer>
 SETSeedFinder::sortByLayer(MuonRecHitContainer & cluster) const
 {
-  sort(cluster.begin(), cluster.end(),sortSegRadius);
+  stable_sort(cluster.begin(), cluster.end(),sortSegRadius);
     //---- group hits in detector layers (if in same layer); the idea is that
     //---- some hits could not belong to a track simultaneously - these will be in a
     //---- group; two hits from one and the same group will not go to the same track
@@ -73,22 +74,23 @@ SETSeedFinder::sortByLayer(MuonRecHitContainer & cluster) const
 
       //---- hits from DT and CSC  could be very close in angle but incosistent with
       //---- belonging to a common track (and these are different surfaces);
-      //---- also DT hits from a station (in a pre-cluster) should be always in a group together;
+      //---- also DT (and CSC now - 090822) hits from a station (in a pre-cluster) should be always in a group together;
       //---- take this into account and put such hits in a group together
 
-      bool specialCase = ( detId.subdetId()   == MuonSubdetId::DT &&
-                           detId_2.subdetId() == MuonSubdetId::DT    );
-
-
-
-      if(specialCase){
-        //if(detId.subdetId() != MuonSubdetId::DT || detId_2.subdetId() != MuonSubdetId::DT) {
-	//std::cout<<"IBL ALARM 0000"<<std::endl;
-        //}
+      bool specialCase = false;
+      if( detId.subdetId()   == MuonSubdetId::DT &&
+          detId_2.subdetId() == MuonSubdetId::DT    ){
         DTChamberId dtCh(detId);
         DTChamberId dtCh_2(detId_2);
         specialCase =  (dtCh.station() == dtCh_2.station());
       }
+      else if(detId.subdetId()   == MuonSubdetId::CSC &&
+              detId_2.subdetId()   == MuonSubdetId::CSC){
+        CSCDetId cscCh(detId);
+        CSCDetId cscCh_2(detId_2);
+        specialCase = (cscCh.station() == cscCh_2.station() && cscCh.ring() == cscCh_2.ring());
+      } 
+
       if(distanceToDetector<0.001 || true==specialCase){ // hardcoded value - remove!
         hitsInThisLayer.push_back(cluster[iHit+1]);
       }
