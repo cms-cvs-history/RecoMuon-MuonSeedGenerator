@@ -1,3 +1,5 @@
+<use name=Geometry/DTGeometry>
+<use name=Geometry/CSCGeometry>
 <use name=FWCore/PluginManager>
 <use name=FWCore/Framework>
 
@@ -16,6 +18,8 @@
 
 <library name=MuonSeedParametrization file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedParaFillHisto.cc,MuonSeedPTAnalysis/MuonSeeddPhiScale.cc,MuonSeedPTAnalysis/MuonSeedParametrization.cc>
    <Flags EDM_PLUGIN=1>
+#   <use name=Geometry/DTGeometry>
+
 </library>
 
 <library name=MuonSeedValidator file=MuonSeedPTAnalysis/SegSelector.cc,MuonSeedPTAnalysis/MuonSeedValidator.cc>
